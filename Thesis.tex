@@ -1,0 +1,80 @@
+\documentclass[12pt, a4paper]{report}
+
+\usepackage[left = 2.5cm, right = 2.5cm, top = 3cm, bottom = 3cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[justification = raggedright, labelfont = bf, font = small, textfont = it]{caption}
+\usepackage[final]{pdfpages}
+\usepackage[all]{nowidow}
+\usepackage[bottom]{footmisc} % place footnotes at the bottom of the page
+\usepackage[flushleft]{threeparttable}
+\usepackage[misc,geometry]{ifsym} % Letter symbol
+\usepackage[parfill]{parskip}
+\usepackage[T1]{fontenc}
+
+% \usepackage[super, square, comma, sort&compress]{natbib}
+\usepackage{natbib} % Package for citations and refrences
+\setlength{\bibsep}{0.0pt} % Spacing in bibliography
+\usepackage[autostyle, english = american]{csquotes}
+\usepackage[english]{babel}
+\MakeOuterQuote{"}
+
+\usepackage{amsmath} % Better math support
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{array}
+\usepackage{afterpage}
+\usepackage{authblk}
+\usepackage{breakcites}
+\usepackage{booktabs}
+\usepackage{float} % Positioning
+\usepackage{longtable}
+\usepackage{graphicx}  % Allows including images
+\usepackage{mathtools} % Loads amsmath
+\usepackage{multirow}
+\usepackage{scrextend} % create lists \begin{labeling}
+\usepackage{setspace}
+\usepackage{subfiles}
+\usepackage{subcaption}
+\usepackage{tocloft}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{hyperref} % Create links - refrences
+\definecolor{mycol}{RGB}{8, 29, 88}
+\definecolor{pagecolor}{RGB}{155, 250, 200}
+\hypersetup{
+  pdffitwindow = false,     % window fit to page when opened
+  pdfstartview = {Fit},     % fits the width of the page to the window
+  pdfnewwindow = true,      % links in new window
+  colorlinks = true,        % false: boxed links; true: colored links
+  linkcolor  = mycol,       % color of internal links 
+  citecolor  = blue,        % color of links to bibliography
+  filecolor  = blue,        % color of file links
+  urlcolor   = blue         % color of external links
+}
+\addtokomafont{labelinglabel}{\bfseries}
+
+\makeatletter
+\patchcmd{\@makechapterhead}{\vspace*{50\p@}}{}{}{}% Removes space above \chapter head
+\patchcmd{\@makeschapterhead}{\vspace*{50\p@}}{}{}{}% Removes space above \chapter* head
+\makeatother
+
+\renewcommand{\baselinestretch}{1.5}
+\renewcommand\theContinuedFloat{\alph{ContinuedFloat}}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+
+% ---------------------------------------------------------------------------
+\begin{document}
+
+\includepdf[pages = {-}, landscape = true]{Cover}\clearpage
+\subfile{Summary}\clearpage
+\subfile{Chapter1}  % Intro
+\subfile{Chapter2}  % DGM
+\subfile{Chapter3}  % LL
+\subfile{Chapter4}  % MEM
+\subfile{Chapter5}  % MortalityLaws
+
+\bibliographystyle{./references/PopulationStudies}
+\bibliography{./references/ThesisREF}
+\end{document}
+

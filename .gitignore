@@ -1,3 +1,5 @@
+*.DS_Store
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -240,3 +242,4 @@ TSWLatexianTemp*
 
 # generated if using elsarticle.cls
 *.spl
+.Rproj.user

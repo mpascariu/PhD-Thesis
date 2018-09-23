@@ -1,0 +1,598 @@
+
+\documentclass[Thesis]{subfiles}
+% % --------------------------------------------
+
+\begin{document}
+
+\newpage
+\pagenumbering{gobble}
+\chapter{The Double-Gap Life Expectancy Forecasting Model}
+\pagecolor{pagecolor}\afterpage{\nopagecolor}
+{
+\vspace{2cm}
+\large
+Marius Dan Pascariu\\
+Vladimir Canudas-Romo\\
+James W. Vaupel
+\vspace{2cm}
+\textit{\\Insurance: Mathematics and Economics} 78: 339--350 (2017).
+}
+\clearpage
+\pagecolor{pagecolor}\afterpage{\nopagecolor}
+\section*{}
+\clearpage
+% % --------------------------------------------
+
+\begin{titlepage}
+  \parbox{150mm}{
+  \footnotesize
+  Corresponding Author: Marius D. Pascariu\\[0mm]
+  Institute of Public Health\\[0mm]
+  University of Southern Denmark\\[0mm]
+  J.B. Winslows Vej 9B, 5000 Odense, Denmark\\[0mm]
+  E-mail: mpascariu@health.sdu.dk}
+  \centering
+  	{\quad\par\vspace{2cm}}
+  	{\huge\bfseries The Double-Gap Life Expectancy Forecasting Model\par}
+  	\vspace{2cm}
+  	{\Large Marius D. Pascariu\par}
+  	{\itshape Institute of Public Health, University of Southern Denmark, Odense, Denmark\\[2mm]}
+  	{\Large Vladimir Canudas-Romo\par}
+  	{\itshape School of Demography, The Australian National University, Canberra, Australia\\[2mm]}
+  	{\Large James W. Vaupel\par}
+  	{\itshape Max--Planck Institute for Demographic Research, Germany\\[0mm]}
+  	{\itshape Institute of Public Health, University of Southern Denmark, Odense, Denmark}
+  	\vfill
+  
+    % Bottom of the page
+  	{\large June 16, 2017\par}
+\end{titlepage} 
+
+\newpage
+% --------------------------------------------
+
+\quad\vspace{4cm}
+\pagenumbering{arabic}\setcounter{page}{23}
+\section*{Abstract}\label{sec:abstract1}
+Life expectancy is highly correlated over time among countries and between males and females. These associations can be used to improve forecasts. Here we propose a method for forecasting female life expectancy based on analysis of the gap between female life expectancy in a country compared with the record level of female life expectancy in the world. Second, to forecast male life expectancy, the gap between male life expectancy and female life expectancy in a country is analysed.We present these results for various developed countries. We compare our results with forecasts based on the Lee--Carter approach and the Cairns--Blake--Dowd strategy. We focus on forecasting life expectancy at age 0 and remaining life expectancy at age 65.
+
+\subsection*{Keywords:}
+\emph{Life expectancy forecasting; Mortality modelling; Best practice trends; Sex-gap}
+
+\newpage
+\section{Introduction}
+
+The history of the evolution of life expectancy is of crucial importance for demographers and actuaries who want to develop more accurate forecasting models. Between 1840 and 2014 no more than seven countries have been the record holders of female life expectancy at birth; starting with Sweden and Norway in the 19th century and finishing with present day Japan. The competition among countries to reduce mortality levels resulted in a remarkable linear rise as presented by \cite{oeppen2002}, or a segmented linear trend as suggested by \cite{vallin2009}. In developed countries, the linear trend in period life expectancy has proven itself to better fit trends in human mortality than more complex mathematical models based on age-specific death rates \citep{white2002}. The rate of change in age-specific death rates have less regular patterns over time than life expectancy, which is an age-aggregated measure. Thus, although life expectancy loses specificity it compensates in terms of accuracy. Furthermore, data highly aggregated by age give valuable information that can be used to tackle the issue of mortality forecasting from a clearer perspective.
+
+\cite{torri2012} built on the idea that future human longevity is given by a general life expectancy trend. Their model at first forecasts the world’s record life expectancy and then the gap between the record and the current life expectancy of a particular population of interest assuming a tendency towards convergence with the predicted record level. The Torri--Vaupel approach is promising but has the drawback that populations that lag behind record life expectancy cannot become the record holder; in addition the interdependence between the sexes is not recognized. Furthermore, no population’s life expectancy can exceed the forecast record.
+
+Between 1950 and 2014 the record holder for life expectancy at birth changed more than 15 times among 5 countries; and in the same manner the record holder for life expectancy at age 65 changed more than 10 times among 6 countries. This indicates that the record is not given by a single reference population. The case of Japan shows that a country with a very low level of life expectancy, which was the case immediately after World War II in this country, can improve at a fast pace, catch up with the low mortality populations and eventually become the record holder. How long a population can maintain the status of record holder is an open question. A method that can capture change in the recordholder is highly relevant. We propose such a method by using the trend-line of record life expectancy, instead of the actual record values. The use of trend-line implies that the best-practice country in a given year can be above the best-practice line. This fact was shown by \cite{oeppen2002}.
+
+The majority of the forecasting models used by demographers and actuaries tend to predict future longevity for specific countries separately for males and females. One reason could be that females, as a group, have a different mortality age-pattern from males. They live longer and the death rates for females are lower than those for males at all ages, even before birth and in almost every country in the world \citep{austad2006}. The most pronounced discrepancy can be observed in the very old, among centenarians and supercentenarians (persons with an age of 110 and more) when women outnumber men by more than nine to one \citep{perls1998}. The sex gap in life expectancy widened and then shrank in the last half of the last century as the rate of improvement in female life expectancy exceeded that for males. Thus, the available evidence indicates the presence of behavioural as well as biological differences between the sexes, and social and psychological factors all play important roles in differentiating the mortality patterns for females and males. To simplify analysis an assumption generally made is that females and males are two different populations independent of each other.
+
+\cite{li2005} introduced a method for forecasting death rates of different populations and for both sexes that are not expected to diverge, using an augmented common factor model. \cite{hyndman2013} propose a method for coherent forecasting of mortality rates in different subpopulations based on functional principal components models of simple functions of rates. The product-ratio functional forecasting method models the geometric mean of subpopulation rates and the ratio of subpopulation rates to product rates. \cite{raftery2013} also discuss the possibility of forecasting life expectancy using a two-sex model, and develop this idea with the introduction of an elegant model to obtain joint probabilistic projections of life expectancy for both sexes \citep{raftery2014}. First, female life expectancy is forecast using a Bayesian hierarchical model and then the gap between female and male is modelled, recognizing in a formal way the correlation in mortality.
+
+Further knowledge can be gained by integrating the idea of the life expectancy correlation between sexes and also between countries, into a single model. The main objective of this article is to present such a model.
+
+The remainder of the article is organized as follows. First, in Section \ref{sec:data} the data used in fitting the model are presented. In Section \ref{sec:model} a new life expectancy projection model is proposed. In Section \ref{sec:accuracy} a method to assess the performance of the model is given. Section \ref{sec:results} shows simulation results and illustrations of life expectancy in several countries by sex. The discussion and conclusion are in Section \ref{sec:discussion}.
+
+\section{Data description}\label{sec:data}
+
+The data source used in this article is the \cite{hmd2017}, which contains historical mortality data for 47 homogeneous populations in different countries and regions. HMD constitutes a reliable data source because it includes high quality historical mortality data that was subject to a uniform set of procedures, guaranteeing the cross-national comparability of the information.
+
+\begin{table}[!b]
+\small
+\caption{Selected HMD countries and years with available data used for the illustration}
+\centering\def\arraystretch{1.0}
+  \begin{tabular}{cl}
+  	\hline
+    Available data & Countries and regions   \\
+  	\hline
+	  1950 - 2010 & Bulgaria\\
+	  1950 - 2011 & Canada\\
+	  1950 - 2012 & Italy\\
+	  1950 - 2013 & Scotland, England \& Wales, Iceland, New Zealand\\
+	  1950 - 2014 & Australia, Austria, Belgium, Czech Republic, Denmark, Finland, \\
+	  & France, Hungary, Ireland, Japan, Netherlands, Norway,\\
+	  & Portugal, Spain, Slovakia, Switzerland, Sweden, U.S.A.\\
+	  1956 - 2014 & East Germany, West Germany\\
+	  1958 - 2014 & Poland, Russia\\
+	  1959 - 2013 & Estonia, Latvia, Lithuania, Ukraine\\
+	  1959 - 2014 & Belarus\\
+	  1970 - 2014 & Taiwan\\
+	  1981 - 2013 & Greece\\
+	  1983 - 2014 & Israel, Slovenia\\
+    \hline
+    \multicolumn{2}{m{10cm}}{Source: \cite{hmd2017} }
+  \end{tabular}
+\label{tbl:HMD_data}
+\end{table}
+
+For the purpose of our analysis we have focused on a subset of these data covering calendar years 1950--2014 and the 0--95 age range in 38 countries and regions, giving 76 sex-specific populations. The selected populations must have sufficient size to allow the fitting of a forecasting model and should be unique, meaning that a person included in one population should not be included in others. The selected countries are shown in \ref{tbl:HMD_data} along with the dates used to define the fitting periods.
+
+
+\section{The method}
+\label{sec:model}
+The objective is to construct a model for forecasting life expectancy of female and male life expectancy at any age. The model is based on correlations existing among countries and between sexes. The method combines separate forecasts to obtain joint female and male life expectancies that are coherent with the bestpractice trend and correlated.
+
+The model construction follows four steps:
+\begin{enumerate}
+  \item Best-practice life expectancy is identified in order to get a general sense of the direction and the rate of change in human mortality.
+  \item The gap between female life expectancy and the best-practice trend in the world is forecast using a classic time series model, thus determining future female life expectancy.
+  \item The gap between male and female life expectancy is forecast with the help of a linear model to obtain the country specific male life expectancy.
+  \item Prediction intervals are constructed from a multivariate normal distribution with mean zero and covariance matrix given by the residuals generated in the fitting of the three time series in the previous steps.
+\end{enumerate}
+
+The core of the proposed double-gap model can be summarized by two equations: first future female life expectancy at age $x$, time $t$ and country $k$, $e^{f}_{k,x,t}$, can be obtained as the difference between future best-practice life expectancy at that age and time, $e^{bp}_{x,t}$, and a predicted gap or distance, $D_{k,x,t}$, of the performance of the specific lagging country or region,
+
+\begin{equation}\label{eq:female_ex}
+e^{f}_{k,x,t}= e^{bp}_{x,t} - D_{k,x,t}.
+\end{equation}
+
+Similarly future life expectancy for the male population is modelled as the difference between future female life expectancy and the sex gap, $G_{k,x,t}$, in life expectancy,
+
+\begin{equation}\label{eq:male_ex}
+ e^{m}_{k,x,t}= e^{f}_{k,x,t} - G_{k,x,t}.
+\end{equation}
+
+
+\subsection{Step 1 - The best-practice trend}
+
+The best-practice trend in life expectancy is defined as the predicted value of a linear model based on the female record life expectancy time series of the form
+\begin{equation}\label{eq:ex-record}
+ e^{record}_{x,t} = {\alpha_{x}}_{0} + {\alpha_{x}}_{1}t, + \epsilon^{(0)}_{x,t},
+ \text{with  } t = 1, 2, 3...
+\end{equation}
+therefore,
+
+\begin{equation}\label{eq:bp-trend}
+ e^{bp}_{x,t} = {\alpha_{x}}_{0} + {\alpha_{x}}_{1}t,
+\end{equation}
+
+where $e^{record}_{x,t}$ denotes the record life expectancy at age $x$ and time $t$, $e^{bp}_{x,t}$ is the best-practice trend, ${\alpha_{x}}_{i}$ represent the parameters of the model fitted at age $x$, and the errors $\epsilon^{(0)}_{x,t}$ are independent and identically distributed random variables normally distributed with mean zero and variance $\sigma^{(0)}$. To predict future best-practice levels we will follow the past regularity observed in improvement in life expectancy and extrapolate directly the future trend.
+
+The Double-Gap model in equations (\ref{eq:female_ex}) and (\ref{eq:male_ex}) are applied here to life expectancies at birth and at age 65: Analysing the period between 1950 and 2014 we can observe that the record life expectancy at birth increased at a rate of 2.1 years per decade from 73.5 to 86.8, while at age 65 the improvement was on average 1.27 years per decade, captured in the parameter ${\alpha_{x}}_{1}$ in equation (\ref{eq:ex-record}). These rates of increase imply a change from 16.3 years in 1950 in Iceland to 24.2 in 2014 in Japan. The linear fit is presented in \hyperref[fig:BP_trend]{Figure \ref{fig:BP_trend}}.
+
+\begin{figure}[!tb]
+\centering
+\begin{minipage}{.45\textwidth}
+  \centering
+  \caption*{\textit{Age 0}}
+  \includegraphics[width=1\linewidth]{./figures/Chapter2/Figure1A.pdf}
+\end{minipage}%
+\hspace{6mm}
+\begin{minipage}{.45\textwidth}
+  \centering
+  \caption*{\textit{Age 65}}
+  \includegraphics[width=1\linewidth]{./figures/Chapter2/Figure1B.pdf}
+\end{minipage}
+\caption{The trend of record female life expectancy at birth and at age 65 between 1950 and 2014}
+\label{fig:BP_trend}
+\end{figure}
+
+
+%\pagebreak
+\subsection{Step 2 - The gap to best-practice trend}
+
+One way to forecast the gap between the best-practice trend and country specific female life expectancy, $D_{k,x,t}$, is to use the classic $ARIMA$ model \citep{box1976}. This is appropriate when the data set is sufficiently long and exhibits a stable and consistent pattern over time with few outliers.
+
+In general notation, we have an $ARIMA(p,d,q)$ model, where $p$ is the order of the autoregressive process, $d$ indicates the order of integration, namely the number of times that the series must be differenced in order to make it stationary, and $q$ is the order of the moving average process. The general form of an $ARIMA(p,d,q)$ model for a stochastic process $D_{k,x,t}$ is given by:
+
+\begin{equation}
+\triangledown^d D_{k,x,t}=
+\underbrace{\mu_{k,x}}_{\text{Drift}}
++ \underbrace{ \sum_{i=1}^{p} \phi_i \triangledown^d D_{k,x,t-i}}_{\text{Regression}}
++ \underbrace{\epsilon^{(1)}_{k,x,t} + \sum_{j=1}^{q} \theta_j \epsilon^{(1)}_{k,x,t-j}}_{\text{Smoothed noise} }
+\end{equation}
+
+where the response can be obtained from linear regression of previous gaps plus additional \textit{smoothed noise}. We denote with $\triangledown^{d} D_{k,x,t}$ the stationary (transformed) time series used to fit the $ARIMA$ model. The constant parameter $\mu_{k,x}$ is the drift, indicating the average change in the series over time; $\phi_i$ are the parameters of the auto-regressive part, and $\theta_j$ are the parameters of the moving average part. Finally $\epsilon^{(1)}_{k,x,t}$ is a sequence of independent and identically distributed random variables with mean zero and variance $\sigma^{(1)}$.
+
+\begin{table}[ht]
+\small\centering\def\arraystretch{1.2}
+\caption{Estimated parameters of the ARIMA model for the gap between best-practice and country specific data at birth and at age 65, 1950-2014.}
+\begin{tabular}{p{2cm}l|lllll}
+                & Age & Rank & $\mu$ & $\phi_1$ & $\phi_2$& $\theta_1$ \\ \hline
+\multirow{2}{*}{USA}    & 0   &  $(0,1,0)$ & -  & - & -  & -  \\
+                        & 65  &  $(0,1,0)$ & -  & - & -  & -  \\ \hline
+\multirow{2}{*}{FRANCE} & 0   &  $(1,1,0)$ & - & -0.3519 & - & -  \\
+                        & 65  &  $(1,1,1)$ & - & -0.3048 & - & -0.4533  \\ \hline
+\multirow{2}{*}{SWEDEN} & 0   &  $(2,1,1)$ & 0.0283 & -1.1521 & -0.5065 & 0.9173\\
+                        & 65  &  $(0,1,1)$ & 0.0175 & - & - & -0.6694 \\ \hline
+\multicolumn{6}{l}{\scriptsize Source: Authors' calculations based on data described in \hyperref[tbl:HMD_data]{Table \ref{tbl:HMD_data}}}
+\end{tabular}
+\label{tbl:ARIMA_coef}
+\end{table}
+
+
+For each country and period of time an appropriate model is fitted so that it captures the information given by the past pattern of the gap. We consider $ARIMA(p, d, q)$ models where $d$ is selected based on successive KPSS unit-root tests \citep{kwiatkowski1992}. That is, we test the data for a unit root; if the test result is significant, we test the differenced data for a unit root; and so on until non-significant. Once the order of difference $d$ is selected, we proceed to select the values of $p$ and $q$ by minimizing the AIC. Finally based on the historical trend we decide whether a drift should be allowed in the model.
+
+An analysis for the case of France over the 1950-2014 period indicated that the $ARIMA(1,1,0)$ for age 0 and $ARIMA(1,1,1)$ for age 65 are the most suitable models for describing the data. For the USA the random walk with no drift is found to be the most parsimonious model for both ages, but for Sweden, $ARIMA$ models with a higher rank degree are needed. Estimated future values of the gap in 2050, together with 80\% and 95\% prediction intervals, are plotted in \hyperref[fig:Dgap]{Figure \ref{fig:Dgap}}.
+
+\begin{figure}[!b]
+\centering
+\begin{subfigure}[t]{0.33\textwidth}
+  \caption*{USA}
+  \makebox[0pt][r]{\makebox[30pt]{\raisebox{75pt}{\rotatebox[origin=c]{90}{\textit{Age 0}}}}}%
+  \includegraphics[width=\textwidth]{./figures/Chapter2/Figure2A.pdf}
+  \makebox[0pt][r]{\makebox[30pt]{\raisebox{75pt}{\rotatebox[origin=c]{90}{\textit{Age 65}}}}}%
+  \includegraphics[width=\textwidth]{./figures/Chapter2/Figure2B.pdf}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.33\textwidth}
+  \caption*{FRANCE}
+  \includegraphics[width=\textwidth]{./figures/Chapter2/Figure2C.pdf}
+  \includegraphics[width=\textwidth]{./figures/Chapter2/Figure2D.pdf}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.33\textwidth}
+  \caption*{SWEDEN}
+  \includegraphics[width=\textwidth]{./figures/Chapter2/Figure2E.pdf}
+  \includegraphics[width=\textwidth]{./figures/Chapter2/Figure2F.pdf}
+\end{subfigure}
+\caption{The forecast gap between the best-practice trend and country-specific female life expectancy at birth and at age 65, with associated 80\% and 95\% prediction intervals, 1950-2050.}
+\label{fig:Dgap}
+\end{figure}
+
+The forecast gaps for France show that the French female population could surpass the best practice trend in the future. This information is given by the lower side of the 80\% and 95\% prediction limits which are below zero. The forecasts for Sweden suggest a continuation of the historical trend where improvement in life expectancy at birth and age 65 is lower than the pace given by our selected benchmark, namely the best-practice trend. However the speed of divergence is slow, approximately one year of life expectancy in a 40 year forecasting horizon. For the USA, the forecasts suggest little change.
+
+\subsection{Step 3 - The sex gap model}
+
+To predict the gap in life expectancy between females and males, $G_{k,x,t}$, at a given age $x$ for specified country $k$ at time $t$ we apply a method that consists of a linear model and a random walk process with no drift.
+
+The linear model takes into account the gap in the previous two years and an additional term that relates to female life expectancy. This term is given by $(e^{f}_{k,x,t}-\tau)_{+}$ where $\tau$ is the level of life expectancy at the time when the sex gap is expected to stop widening and start narrowing. The notation $(z)_{+}$ represents the maximum value between zero and $z$. The linear model is fitted over all ages lower than the level of female life expectancy, $A$.  The levels of $\tau$ and $A$ are determined from historical data by maximizing the resulting maximum likelihoods of our linear model over integer values of $\tau$ and $A$. In the statistical software \textit{\textbf{R}} the linear model can be fitted using the \textit{crch} package \citep{messner2015}.
+
+\begin{equation}
+G^{*}_{k,x,t} = \left\{\begin{matrix}
+ \beta_{0}
++ \underbrace{\beta_{1}G_{k,x,t-1} + \beta_{2}G_{k,x,t-2}}_{\text{Autoregressive model}}  + \underbrace{\beta_{3}(e^{f}_{k,x,t}-\tau)_{+}}_{\substack{\text{Level associated with } \\ \text{life expectancy when the gap} \\ \text{starts narrowing}}}
++ \epsilon^{(2)}_{k,x,t} & \text{if,} & e^{f}_{k,x,t} \leq A,\\ & & \\
+\underbrace{G_{k,x,t-1} + \epsilon^{(3)}_{k,x,t}}_{\text{Random walk}}
+& \textit{,} & \text{otherwise.}
+\end{matrix}\right.
+\label{eq:Raftery}
+\end{equation}
+
+Because there is little evidence to make any assumptions about future pattern of the female-male gap at advanced ages \citep{raftery2014} the random walk model will be used to further fit and predict the evolving gap if life expectancy surpasses the obtained limit $A$.
+
+As a further check we ensure that the modelled gap will always be between the observed historical minimum and maximum values of the female-male gap,
+
+\begin{equation}
+  G_{k,x,t}=min\{max\{G^{*}_{k,x,t},L\},U\},
+\end{equation}
+
+where L and U are the minimum and maximum observed gaps respectively. The errors $\epsilon^{(2)}_{k,x,t}$  and $\epsilon^{(3)}_{k,x,t}$ are independent and identically distributed random variables normally distributed with mean zero and variance $\sigma^{(2)}$ and $\sigma^{(3)}$ respectively.
+
+The presented method is similar with the linear model used by \cite{raftery2014}. In order to obtain joint probabilistic forecasts of life expectancies for female and male populations, Raftery et. al. modelled the relation between the two by projecting the sex-gap using a linear regression with different levels of female life expectancy as covariates. The model is applied to World Population Prospects 2008 set of quinquennial data starting in 1950 \citep{wpp2008}.
+
+We chose to adopt a modified version of the Raftery model because several covariates in the original model, which was constructed for projecting 5 years intervals, were not statistically significant for a 1-year step projection model. Also, we decided not to impose any dependency of an initial life expectancy in our model as in the original Raftery model. This decision was taken because an important number of time series in the Human Mortality Database start after 1950 as shown in \hyperref[tbl:HMD_data]{Table \ref{tbl:HMD_data}}.
+
+The model is fitted using the data from all the countries in order to obtain the coefficient values and then it is used to forecast the gap for each country separately, using country specific female life expectancy.
+
+\begin{table}[!b]
+\centering\def\arraystretch{1.2}
+\caption{Estimated parameters for sex-gap forecast models for life expectancy at birth and age 65}
+\scalebox{0.9}{
+\begin{tabular}{@{}ccccll@{}}
+\hline
+Parameters  & Estimate	& Estimate  & $Pr(>|t|)$      & \\
+			      & Age 0     & Age 65    & for both ages   & \\ \hline
+$\beta_{0}$ & 0.21257   & 0.14052   & \textless 2e-16 & \\
+$\beta_{1}$ & 0.82184   & 0.64807   & \textless 2e-16 & \\
+$\beta_{2}$ & 0.15971   & 0.32943   & \textless 2e-16 & \\
+$\beta_{3}$ & -0.02690  & -0.01442  & \textless 2e-16 & \\ %\hline
+$\tau$      & 75        & 15        &                 & \\
+A           & 86        & 24        &                 & \\
+L 			    &  0.99	    & 0.33      &                 & \\
+U 			    & 13.68     & 5.24      &                 & \\ \hline
+\multicolumn{6}{m{9cm}}{\textbf{Source}: Authors' calculations based on data described in \hyperref[tbl:HMD_data]{Table \ref{tbl:HMD_data}}}
+\end{tabular}
+}
+\label{tbl:Raftery.eq0}
+\end{table}
+
+Estimates of the model parameters are provided in \hyperref[tbl:Raftery.eq0]{Table \ref{tbl:Raftery.eq0}} for the models fitted at age 0 and age 65 respectively. The parameter $\beta_{0}$ denotes the intercept level, which could be interpreted as a biological gap between the sexes; $\beta_{1}$ and $\beta_{2}$ represent the effect of the previous two gaps at time $t-1$ and $t-2$, influencing the range of possible values for the new gap. Together the first three parameters, $\beta_{0}$, $\beta_{1}$ and $\beta_{2}$ explain the majority of the gap trend. The negative $\beta_{3}$ parameter gives the speed of the convergence between the female and male life expectancies. As shown in \hyperref[tbl:Raftery.eq0]{Table \ref{tbl:Raftery.eq0}}, the life expectancies at birth are converging faster than those at age 65.
+
+The forecast values of the sex gap in the USA, together with 80\% and 95\% prediction intervals based on the 1950-2014 data, can be observed in \hyperref[fig:Ggap]{Figure \ref{fig:Ggap}}. In all three countries, and indeed in many other developed countries, the sex gap increased between 1950 and about 1980, and then decreased to 2014. The models for age 0 suggest a continuation of the descending trend until the beginning of 2030 where the gap will remain approximately constant.
+The transition from a decreasing gap to stagnation coincides with the shift from the linear model to the random walk model described in equation (\ref{eq:Raftery}). For instance in France, where currently life expectancy is higher than in the USA, the period of time needed to reach a value of life expectancy of 86 years for female population is shorter i.e. resulting in a projection with a shorter period of time with a decreasing sex-gap. In USA and Sweden the forecast gap in 2050 is approximately 3 years but in France it is 6 years for life expectancy at birth. For life expectancy at age 65 the models forecast very little change. Also, even if it is not impossible, the models suggest that is highly unlikely that the sex-gap would become negative and a higher life expectancy for males would be experienced in any of the three countries either at age 0 or 65.
+
+\begin{figure}[!tb]
+\centering
+\begin{subfigure}[t]{0.33\textwidth}
+  \caption*{USA}
+  \makebox[0pt][r]{\makebox[30pt]{\raisebox{75pt}{\rotatebox[origin=c]{90}{\textit{Age 0}}}}}%
+  \includegraphics[width=\textwidth]{./figures/Chapter2/Figure3A.pdf}
+  \makebox[0pt][r]{\makebox[30pt]{\raisebox{75pt}{\rotatebox[origin=c]{90}{\textit{Age 65}}}}}%
+    \includegraphics[width=\textwidth]{./figures/Chapter2/Figure3B.pdf}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.33\textwidth}
+  \caption*{FRANCE}
+  \includegraphics[width=\textwidth]{./figures/Chapter2/Figure3C.pdf}
+  \includegraphics[width=\textwidth]{./figures/Chapter2/Figure3D.pdf}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.33\textwidth}
+  \caption*{SWEDEN}
+  \includegraphics[width=\textwidth]{./figures/Chapter2/Figure3E.pdf}
+  \includegraphics[width=\textwidth]{./figures/Chapter2/Figure3F.pdf}
+\end{subfigure}
+\caption{The forecast gap between female and male life expectancy at birth and at age 65, with associated 80\% and 95\% prediction intervals, 1950-2050}
+\label{fig:Ggap}
+\end{figure}
+
+
+\subsection{Step 4 - Dealing with correlated prediction intervals}
+
+Our approach to forecasting combines different models that generate separate predictions. Because our aim is to obtain coherent results we construct prediction intervals from a multivariate normal distribution with mean zero and covariance matrix given by the residuals generated in the fitting of the three time series in the previous steps.
+
+The multivariate normal distribution of the three-dimensional random vector of residuals
+$\xi = [ \epsilon^{(0)}_{x,t}, \epsilon^{(1)}_{k,x,t}, \epsilon^{(2,3)}_{k,x,t}]$ can be written,
+
+\begin{equation}
+\xi \thicksim \mathcal{N}_{3}(\mu, \Sigma),
+\end{equation}
+
+with the mean vector,\\
+\begin{equation*}
+\mu = \Big[E(\epsilon^{(0)}_{x,t})=0, E(\epsilon^{(1)}_{k,x,t})=0, E(\epsilon^{(2,3)}_{k,x,t})=0\Big],
+\end{equation*}
+
+and 3$\times$3 covariance matrix, \\
+\begin{equation*}
+\Sigma = \Big[Cov(\epsilon^{(0)}_{x,t}, \epsilon^{(1)}_{k,x,t}, \epsilon^{(2,3)}_{k,x,t})\Big].
+\end{equation*}
+
+The time series of errors obtained by fitting the random walk model in the Raftery model, $\epsilon^{(3)}_{k,x,t}$ (see Equation \ref{eq:Raftery}), is usually of a very short length over the 1950 and 2014 period. This is because in most countries the level of life expectancy at age $x$ is below the determined level $A$, during the entire period of time. Therefore, in practice the random walk model is used only for forecasting in most of the countries. The assumption adopted in order to keep the model simple is that variance $\sigma$ of $\epsilon^{(3)}_{k,x,t}$ equals the variance observed in the $\epsilon^{(2)}_{k,x,t}$.
+
+The distributions of future values of country-specific life expectancies at age $x$ are estimated by combining simulated future paths of the two gaps and the best-practice level through Monte-Carlo simulation.
+
+
+% ---- Section 4-6  ----
+% --------------------------------------------
+
+\section{Accuracy of forecasting prediction}\label{sec:accuracy}
+
+To assess the performance of our model we look at differences between observed and forecast life expectancy and summarize the forecast accuracy. We carry out a back--testing exercise in the spirit of \cite{booth2006}, \cite{jarner2011} and \cite{haberman2014}. Four historical periods used for fitting are considered in our data set: 1950--1985\footnotemark, 1950--1990, 1950--1995 and 1950--2000; and using the rest of the years until 2014 as the window of evaluation.
+
+\footnotetext{Greece, Israel and Slovenia were not evaluated on the 1950--1985 interval because of insufficient data, but were considered in the other three scenarios.}
+
+Let $e_{k,x,t}$ denote the observed remaining life expectancy at age $x$, time $t$ and country $k$ and $\hat{e}_{k,x,t}$ denote the forecast of $e_{k,x,t}$. Then we define the forecast error as:
+
+\begin{equation}
+ \omega_{k,x,t} = e_{k,x,t} - \hat{e}_{k,x,t}.
+\end{equation}
+
+Two measures are considered: mean error (ME) and mean absolute percentage error (MAPE). The mean error is a scale-dependent measure that is useful when comparing different methods applied to the same data set. Calculating the mean error of a forecast is straightforward as it indicates the degree of "optimism" or "pessimism" of the predicted values. However, any scale-dependent measure is sensitive to outliers. Most recommended in the scientific literature is MAPE (\citealp{hanke2001}; \citealp{bowerman2004}) which is scale-independent and can therefore be used to compare forecast performance across different sets of data.
+
+\begin{equation}
+\begin{split}
+ME & = mean\Big(\omega_{k,x,t}\Big), \\
+\\
+MAPE & = mean\Big(\vert100\times\dfrac{\omega_{k,x,t}}{e_{k,x,t}}\vert\Big),
+\end{split}
+\end{equation}
+
+where the notation $mean(z)$ denotes the sample mean of $\lbrace z \rbrace$ over the period of interest.
+
+\section{Results and illustrations}\label{sec:results}
+
+We estimate the distribution values of country specific life expectancies at birth and at age 65 by combining simulated future paths of the gaps and the best-practice trend. The forecast future life expectancies for the three selected countries with different patterns in the two gaps observed in the last 60 years, along with corresponding 80\% and 95\% prediction intervals, are shown in \hyperref[tbl:forecast_results2]{Table \ref{tbl:forecast_results2}}.
+
+We compare our results with the values generated by the Lee--Carter model \citep{lee1992} and the Cairns--Blake--Dowd model \citep{cairns2006}. The Lee--Carter model (LC) is the first stochastic extrapolative model to be developed and can be used to predict the central mortality rates $m_{x,t}$, for all ages. The Cairns--Blake--Dowd (CBD) is a stochastic model designed for modelling mortality at higher ages and builds on the observation that log death rates are approximately linear at ages above 40. Both approaches are well-established methods in mortality forecasting and can be easily implemented in \textbf{\textit{R}} statistical software using the \texttt{StMoMo} package \citep{villegas2015}. Comparison with the CBD model is performed only at age 65. The Lee--Carter model is fitted to ages 0-95 and 65-95, and the CBD is fitted over the 65-95 age range. Both models generate a matrix of forecast death rates. The forecast life expectancies are computed using standard life table calculations.
+
+In order to obtain a complete series of death rates for all the ages up to 110 and to be able to accurately compute the life expectancies the Kannisto old age mortality model is used \citep{thatcher1998} which uses a logistic function fitted for death rates at ages above 80. However, if the predicted death rate at the highest age, in our case 95, is sufficiently large ($\geq 0.4$) a constant force of mortality could be assumed. The difference in life expectancies between the two methods is insignificant.
+
+
+\begin{table}[!tb]
+\centering\large\def\arraystretch{1.4}
+\caption{Forecasts of life expectancy in 2050 produced by the Double--Gap (DG)  Lee--Carter (LC) and Cairns--Blake--Dowd (CBD) models, with 80\% and 95\% prediction intervals. The models were evaluated on data from the period 1950--2014.}
+
+\scalebox{0.65}{
+  \begin{tabular}{p{1.0cm}rr|ccc|ccc}
+  \toprule
+  &   &   & \multicolumn{3}{c|}{AGE 0} & \multicolumn{3}{c}{AGE 65} \\
+  \midrule
+  \multicolumn{3}{c|}{MODEL} & FEMALES & MALES & SEX GAP & FEMALES & MALES & SEX GAP \\
+  \hline
+  \multirow{10}[0]{*}{\rotatebox[origin=c]{90}{USA}} & \multirow{3}[0]{*}{DG} & $\hat{e}_{x,2050}$ & 88.93 & 85.94 & 2.99 & 25.44 & 23.26 & 2.19 \\
+  & & 80\% PI & (87.41--90.46) & (83.93--87.83) & (1.10--5.00) & (24.36--26.53) & (21.46--24.97) & (0.47--3.98) \\
+  & & 95\% PI & (86.64--91.18) & (82.94--88.94) & (0.01--5.99) & (23.81--27.14) & (20.63--25.94) & (-0.49--4.81) \\
+  \cline{2-9}
+  & \multirow{3}[0]{*}{LC}  & $\hat{e}_{x,2050}$ & 85.88 & 81.57 & 4.31 & 23.90 & 21.19 & 2.71 \\
+  & & 80\% PI & (84.72--86.85) & (80.52--82.52) & - & (22.93--24.84) & (20.27--22.07) & - \\
+  & & 95\% PI & (84.26--87.27) & (79.97--83.05) & - & (22.45--25.36) & (19.80--22.48) & - \\
+  \cline{2-9}
+  & \multirow{3}[0]{*}{CBD} & $\hat{e}_{x,2050}$ & - & - & - & 24.01 & 21.34 & 2.67 \\
+  & & 80\% PI & - & - & - & (22.73--25.40) & (20.13--22.58) & - \\
+  & & 95\% PI & - & - & - & (22.16--26.12) & (19.55--23.32) & - \\
+  \cline{2-9}
+  & & $e_{x,2014}$ & 81.47 & 76.67 & 4.80 & 20.85 & 18.26 & 2.59 \\
+  \hline
+
+  \multirow{10}[0]{*}{\rotatebox[origin=c]{90}{FRANCE}} & \multirow{3}[0]{*}{DG} & $\hat{e}_{x,2050}$ & 92.82 & 87.15 & 5.67 & 27.79 & 24.14 & 3.65 \\
+  & & 80\% PI & (90.60--95.12) & (85.18--89.08) & (3.74--7.64) & (26.18--29.3) & (22.36--25.91) & (1.88--5.43) \\
+  & & 95\% PI & (89.43--96.27) & (84.19--90.07) & (2.75--8.63) & (25.38--30.14) & (21.40--26.73) & (1.06--6.39) \\
+  \cline{2-9}
+  & \multirow{3}[0]{*}{LC} & $\hat{e}_{x,2050}$ & 91.14 & 85.38 & 5.76 & 27.55 & 23.28 & 4.27 \\
+  & & 80\% PI & (89.62--92.8) & (83.78--86.80) & - & (25.75--29.17) & (21.39--24.85) & - \\
+  & & 95\% PI & (88.53--93.53) & (83.02--87.46) & - & (24.67--30.00) & (20.23--25.84) & - \\
+  \cline{2-9}
+  &\multirow{3}[0]{*}{CBD} & $\hat{e}_{x,2050}$ & - & - & - & 27.58 & 23.49 & 4.09 \\
+  & & 80\% PI & - & - & - & (24.77--30.67) & (20.93--26.46) & - \\
+  & & 95\% PI & - & - & - & (23.54--32.68) & (19.83--28.26) & - \\
+  \cline{2-9}
+  & & $e_{x,2014}$ & 85.40 & 79.26 & 6.14 & 23.29 & 19.32 & 3.97 \\
+  \hline
+
+  \multirow{10}[0]{*}{\rotatebox[origin=c]{90}{SWEDEN}} & \multirow{3}[0]{*}{DG} & $\hat{e}_{x,2050}$ & 90.41 & 87.84 & 2.57 & 25.37 & 23.22 & 2.15 \\
+  & & 80\% PI & (89.03--91.79) & (85.84--89.92) & (0.49--4.58) & (24.24--26.50) & (21.48--24.94) & (0.42--3.88) \\
+  & & 95\% PI & (88.25--92.51) & (84.81--90.95) & (-0.53--5.61) & (23.63--27.13) & (20.50--25.84) & (-0.48--4.86) \\
+  \cline{2-9}
+  & \multirow{3}[0]{*}{LC} & $\hat{e}_{x,2050}$ & 88.58 & 84.50 & 4.08 & 25.02 & 21.57 & 3.45 \\
+  & & 80\% PI & (87.37--89.69) & (83.32--85.45) & - & (23.90--26.03) & (20.45--22.57) & - \\
+  & & 95\% PI & (86.69--90.15) & (82.69--85.90) & - & (23.13--26.44) & (19.90--23.19) & - \\
+  \cline{2-9}
+  &\multirow{3}[0]{*}{CBD} & $\hat{e}_{x,2050}$ & - & - & - & 25.27 & 21.79 & 3.48 \\
+  & & 80\% PI & - & - & - & (23.67--27.06) & (20.27--23.54) & - \\
+  & & 95\% PI & - & - & - & (22.92--28.23) & (19.58--24.57) & - \\
+  \cline{2-9}
+  & & $e_{x,2014}$ & 84.05 & 80.35 & 3.70 & 21.47 & 18.85 & 2.62 \\
+  \bottomrule
+  \multicolumn{9}{m{23cm}}{\textbf{Note}: The uncertainty in the sex-gap in the case of forecasts generated by the LC and CBD is not available. Sex-specific LC and CBD models are fitted and used to forecast female and male life expectancy.}\\
+  \multicolumn{9}{m{23cm}}{\textbf{Source}: Authors' calculations based on data described in \hyperref[tbl:HMD_data]{Table \ref{tbl:HMD_data}}}
+  \end{tabular}
+}
+\label{tbl:forecast_results2}
+\end{table}
+
+In 2050, US forecast female life expectancy at birth is 88.93 years and 25.44 years at age 65 according to the Double--Gap model (henceforth DG). The Lee--Carter (LC) model predicts more pessimistic results, namely 85.88 years expectation of life at birth and 23.9 years at age 65. Using the DG we estimate an increase in life expectancy at birth of 7.46 years for females and 9.27 years for males, and an improvement in life expectancy at age 65 of 4.59 years for females and 5 years for males. Therefore, US male life expectancy forecast increases faster in the following 40 years than female life expectancy. In general DG model is more optimistic than the LC model, the forecast results for French, Swedish, and US populations over this horizon of time are higher than the LC forecasts.
+
+The sex-gap forecast given by the DG model is narrower in all the three countries than the predicted values of the LC and CBD model. The DG model has the advantage of modelling the female and male population together taking into account the coherence and correlation between the two, while for LC and CBD separate projections are needed resulting in trajectories with a divergent trend between female and male life expectancy. At age 65 the sexgaps forecast by the LC and CBD model are similar.
+
+A visual representation of the results already presented in \hyperref[tbl:forecast_results2]{Table \ref{tbl:forecast_results2}} is given in \hyperref[fig:DG_Forecast_ex]{Figure \ref{fig:DG_Forecast_ex}} in connection with the historical female record life expectancy and the extension of the best-practice trend. In the long term the DG forecast trajectories of life expectancy follow the trend given by the best-practice line. On the other hand the LC and CBD projected trajectories tend to diverge for all three countries and sexes.
+
+Prediction intervals given by the DG model indicate that the female French population has the highest probability, among the three countries, of surpassing the best-practice trend and becoming the new world record holder for life expectancy at birth or at age 65.
+
+\begin{figure}[!htb]
+\centering\def\arraystretch{1.2}
+\scalebox{0.90}{
+\begin{subfigure}[t]{0.47\textwidth}
+  \caption*{\textit{Age 0}}
+  \makebox[0pt][r]{\makebox[30pt]{\raisebox{100pt}{\rotatebox[origin=c]{90}{\textit{USA}}}}}
+  \includegraphics[width=\textwidth]{./figures/Chapter2/Figure4A.pdf}
+  \makebox[0pt][r]{\makebox[30pt]{\raisebox{100pt}{\rotatebox[origin=c]{90}{\textit{FRANCE}}}}}
+  \includegraphics[width=\textwidth]{./figures/Chapter2/Figure4B.pdf}
+  \makebox[0pt][r]{\makebox[30pt]{\raisebox{100pt}{\rotatebox[origin=c]{90}{\textit{SWEDEN}}}}}
+  \includegraphics[width=\textwidth]{./figures/Chapter2/Figure4C.pdf}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.47\textwidth}
+  \caption*{\textit{Age 65}}
+  \includegraphics[width=\textwidth]{./figures/Chapter2/Figure4D.pdf}
+  \includegraphics[width=\textwidth]{./figures/Chapter2/Figure4E.pdf}
+  \includegraphics[width=\textwidth]{./figures/Chapter2/Figure4F.pdf}
+\end{subfigure}
+}
+\caption{Actual and forecast life expectancy at birth and at age 65 generated by the DG, LC and CBD models for females and males, 1950-2050. Prediction interval at 80\% and 95\% level are shown only for the DG model.}
+\label{fig:DG_Forecast_ex}
+\end{figure}
+
+Out-of-sample forecasts are performed using the DG, LC and CDB models in order to test the performance of the three models. Four forecasting horizon are selected starting with 1985 until 2014. The forecast values are compared with the historical values of life expectancy. \hyperref[tbl:accuracy_sum_total]{Table \ref{tbl:accuracy_sum_total}} offers an overall performance of the forecast in the USA, France and Sweden but also  over the 38 Human Mortality Database (HMD) countries and regions. DG performs better than both LC or CBD in terms of mean errors (ME) and mean absolute percentage errors (MAPE) when all the countries are considered. However at age 65 the difference between the models is minor especially in the male population.
+
+% ==========================================================
+\begin{table}[ht]
+\centering\def\arraystretch{1.2}
+\caption{Accuracy measures for the forecast life expectancy at birth and at age 65. Four evaluation periods are considered: 1985-2014, 1990-2014, 1995-2014 and 2000-2014. The results are averaged over the four periods.}
+
+\scalebox{0.9}{
+\begin{tabular}{cc|cc|cc}
+  \multicolumn{2}{c}{} & \multicolumn{2}{c}{AGE 0} & \multicolumn{2}{c}{AGE 65} \\
+	\hline
+  COUNTRIES & MODEL & ME & MAPE & ME & MAPE \\
+  \hline
+	{\multirow{3}[6]{*}{38 HMD Countries}} & DG & \textbf{-0.198} & \textbf{1.728} & \textbf{0.632} & \textbf{4.745} \\
+    & LC & 1.099 & 1.907 & 0.748 & 5.294 \\
+    & CBD & - & - & 0.725 & 5.264 \\
+    \hline
+    {\multirow{3}[6]{*}{USA, FRANCE \& SWEDEN}} & DG & \textbf{-0.285} & \textbf{0.619} & \textbf{0.414} & \textbf{3.433} \\
+     & LC & 0.540 & 1.032 & 0.449 & 3.611 \\
+     & CBD & - & -  & 0.421 & 3.518 \\
+    \hline
+\end{tabular}
+}
+\label{tbl:accuracy_sum_total}
+\end{table}
+
+\hyperref[tbl:accuracy_sum]{Table \ref{tbl:accuracy_sum}} presents an in-depth overview of the accuracy measures for both sexes. DG is consistently less biased than LC for male life expectancy at birth in the three selected countries, but not for females. The CBD model is found to be more accurate that the LC model for age 65 in the male populations. However, there is no model that consistently performs better over all forecasting windows and populations in the study. Some models exhibit a particularly good or bad behaviour for certain historical trends due to the specific constraints of these models. These results show that the DG is capable of generating comparable predictive power with the two most commonly used forecasting models.
+
+\begin{table}[htb]
+\centering\def\arraystretch{1.2}
+\caption{Accuracy measures for the forecast life expectancy at birth and at age 65, by sex. Four evaluation periods are considered: 1985-2014, 1990-2014, 1995-2014 and 2000-2014. The results are averaged over the four periods.}
+
+\scalebox{0.9}{
+\begin{tabular}{cc|cc|cc|cc|cc|}
+  \multicolumn{2}{c}{} & \multicolumn{4}{c}{\textbf{FEMALE POPULATION}} & \multicolumn{4}{c}{\textbf{MALE POPULATION}} \\
+  \multicolumn{2}{c|}{} & \multicolumn{2}{c}{AGE 0} & \multicolumn{2}{c|}{AGE 65} & \multicolumn{2}{c}{AGE 0} & \multicolumn{2}{c|}{AGE 65} \\
+  \cline{1-10}
+  COUNTRY & MODEL & ME & MAPE & ME & MAPE & ME & MAPE & ME & MAPE \\
+  \hline
+  {\multirow{3}{*}{38 HMD}} & DG & \textbf{-0.309} & 1.400 & \textbf{0.450} & \textbf{3.616} & \textbf{-0.088} & \textbf{2.056} & \textbf{0.814} & \textbf{5.874} \\
+    & LC & 0.510 & \textbf{1.082} & 0.482 & 3.629 & 1.689 & 2.732 & 1.014 & 6.960 \\
+    & CBD & - & - & 0.469 & 3.660 & - & - & 0.981 & 6.869 \\
+  \hline
+  {\multirow{3}[2]{*}{USA}} & DG & -0.912 & 1.135 & -0.278 & \textbf{1.955} & \textbf{-0.061} & \textbf{0.369} & \textbf{0.848} & \textbf{4.894} \\
+    & LC & \textbf{-0.414} & \textbf{0.666} & \textbf{-0.255} & 2.394 & 0.926 & 1.240 & 0.904 & 5.195 \\
+    & CBD & - & - & -0.272 & 2.388 & - & - & 0.871 & 5.007 \\
+  \hline
+  {\multirow{3}[2]{*}{FRANCE}} & DG & 0.139 & 0.349 & 0.664 & 3.099 & \textbf{0.112} & \textbf{0.509} & 0.951 & 5.344 \\
+   & LC & \textbf{0.031} & \textbf{0.304} & \textbf{0.305} & \textbf{1.640} & 1.305 & 1.692 & 0.892 & 4.969 \\
+    & CBD & - & - & 0.314 & 1.672 & - & - & \textbf{0.840} & \textbf{4.680} \\
+  \hline
+  {\multirow{3}[2]{*}{SWEDEN}} & DG & -0.688 & 0.834 & -0.340 & 1.664 & \textbf{-0.298} & \textbf{0.517} & \textbf{0.641} & \textbf{3.639} \\
+    & LC & \textbf{-0.196} & \textbf{0.276} & \textbf{-0.245} & \textbf{1.272} & 1.586 & 2.016 & 1.096 & 6.193 \\
+    & CBD & - & - & -0.279 & 1.420 & - & - & 1.052 & 5.944 \\
+  \hline
+  \end{tabular}
+}
+\label{tbl:accuracy_sum}
+\end{table}
+
+More visual results for 18 countries are presented in \hyperref[fig:12Countries_a0]{Figure \ref{fig:12Countries_a0}} and \hyperref[fig:12Countries_a65]{Figure \ref{fig:12Countries_a65}} in the Appendix.
+
+
+\section{Discussion}\label{sec:discussion}
+
+Our approach to forecast life expectancy combines separate forecasts to obtain joint male and female life expectancies that are coherent with the best-practice trend. The trend proposed in the current article is based on the record level of female life expectancy; this trend was used due to its remarkable linear regularity at age 0. The current model is not restricted to the usage of this particular benchmark, and countries or regions might decide to use a different trend depending on the best performing model for each case based on their past evaluation. In some cases, if the data allow other trends can be adopted, for example a super-population composed from Scandinavian countries if the goal is to forecast the life expectancy in one of these populations. Or the model can be applied to the USA in order to forecast life expectancy in each American states and jurisdictions with the record US total female population as "best-practice" \citep{whelpton1948}.
+
+No forecasting model is meant to be used in prediction into an indefinite future. The rate of increase in life expectancy may vary depending on the selected historical period. Therefore, the choice of the historical frame to be fitted is as important as the choice of the model. For example, predicting life expectancy at age 65 based on a trend starting in the 19th century would underestimate the future improvements in human mortality. Also one might ponder the suitableness of the use of a linear trend at age 65. The fluctuations in the relative rate of improvement experienced after age 65 in the last decades (as seen in \hyperref[fig:BP_trend]{Figure \ref{fig:BP_trend}}) suggest the current model can benefit from further research in this direction.
+
+Starting with 1850, not only a rapid improvement in life expectancy has been taking place but also a compression of mortality experience or in other terms a "globalization" of improvements in mortality. After 1950 cross-sectional convergence in life expectancy between different countries is noticeable, with the main contribution being made by countries with a higher level of mortality \citep{oeppen2006}. This is because of the increasing "communication" between the countries and continents and a much faster transfer of technology and innovations that help increase life expectancy in all countries. Our proposed method models the gap whether there is convergence or not and even allows countries with a higher level of mortality to become the record holder in terms of longevity at some point in the future.
+
+Life expectancy is an age-aggregated measure but deeper knowledge can be obtained by converting the obtained life expectancy level into age-schedules of death rates and actuarial life tables by exploiting the regularities of age patterns of mortality. In actuarial science the use of life tables, and other models reflecting life contingencies, is motivated by the need to determine insurance and pension risks, net premiums, and benefits. Although beyond the current project scope, a further step in our research is to transform forecast life expectancy into deaths rates and probabilities using indirect estimation techniques (\citealp{brass1971}; \citealp{wilmoth2012}) or by reconstruction of the empirical distribution of deaths from its statistical moments following the maximum entropy approach \citep{mead1984}.
+
+Having simple methods to predict future mortality levels is of high importance because of the growing significance this field is acquiring in society. Justified by the accuracy and simplicity demonstrated in the present article, the Double--Gap model represents an addition to the existing family of forecasting models. Today when so many models exist the researcher should probably not work simply with one model or approach to modelling the future, but with a combination of them. Thus, the Double-Gap model should be considered as a promising available forecasting tool.
+
+% ---- Appendix ----
+% --------------------------------------------
+\newpage
+\section{Appendix}\label{sec:appendix}
+\vspace{-0.7cm}
+
+\subsection{Out-of-sample forecasts for 18 countries, 1990--2014}
+
+\begin{figure}[!ht]
+  \centering
+   \vspace{-0.7cm}
+  \includegraphics[width=1\linewidth]{./figures/Chapter2/Figure5.pdf}
+   \vspace{-0.7cm}
+  \caption{Comparison of actual life expectancy at birth in 1990--2014 with forecasts generated by the Double--Gap and Lee--Carter models for 18 countries and regions.}
+  \label{fig:12Countries_a0}
+\end{figure}
+
+\begin{figure}[!hb]
+  \centering
+  \vspace{-0.7cm}
+  \includegraphics[width=1\linewidth]{./figures/Chapter2/Figure6.pdf}
+  \vspace{-0.7cm}
+  \caption{Comparison of actual life expectancy at age 65 in 1990--2014 with forecasts generated by the Double--Gap, Lee--Carter and CBD models for 18 countries and regions.}
+  \label{fig:12Countries_a65}
+\end{figure}
+
+\subsection{Forecasts for 18 countries and regions, 2015--2050}
+
+\begin{figure}[!ht]
+  \centering
+   % \vspace{-0.5cm}
+  \includegraphics[width=1\linewidth]{./figures/Chapter2/Figure7.pdf}
+   \vspace{-0.5cm}
+  \caption{Forecast life expectancy at birth in 2015--2050 for 18 countries and regions}
+  \label{fig:12Countries_a0_oos}
+\end{figure}
+
+\begin{figure}[!hb]
+  \centering
+  \vspace{-0.5cm}
+  \includegraphics[width=1\linewidth]{./figures/Chapter2/Figure8.pdf}
+  \vspace{-0.5cm}
+  \caption{Forecast life expectancy at age 65 in 2015--2050 for 18 countries and regions}
+  \label{fig:12Countries_a65_oos}
+\end{figure}
+
+\end{document}
+
+

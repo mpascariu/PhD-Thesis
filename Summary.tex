@@ -1,0 +1,206 @@
+\documentclass[Thesis.tex]{subfiles}
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+  {\quad\par\vspace{1cm}}
+  {\huge Modelling and forecasting mortality}
+  \vspace{2cm}\\
+  {\textbf\large Ph.D. Thesis}
+  \vspace{1cm}\\
+  \includegraphics[width=0.5\textwidth]{./figures/cover/SDU_Logo_black}
+  \vspace{1cm}\\
+  {by \quad\LARGE Marius D. Pascariu}
+  \vspace{2.5cm}\\
+  University of Southern Denmark\\
+  Faculty of Health Sciences\\
+  Institute of Public Health\\
+  Unit of Epidemiology, Biostatistics and Biodemography
+  \vfill
+  Odense, Denmark\\
+  October 2018
+\end{center}
+\end{titlepage}
+
+
+\pagenumbering{roman}
+
+\noindent
+{\footnotesize 
+  \textbf{\Large Academic Advisors}
+  \vspace{0.5cm}\\
+  Professor \textbf{James W. Vaupel}, Ph.D.\\
+  Center for Population Dynamics\\
+  Institute of Public Health\\
+  University of Southern Denmark\\
+  Max-Planck Institute for Demographic Research, Rostock, Germany
+  \vspace{0.4cm}\\
+  Associate Professor \textbf{Vladimir Canudas--Romo}, Ph.D.\\
+  School of Demography\\
+  Australian National University, Canberra, Australia
+  \vfill
+  \textbf{\Large Assessment Committee}
+  \vspace{0.5cm}\\
+  Professor \textbf{Heather Booth}, Ph.D.\\
+  ANU College of Arts and Social Sciences\\
+  School of Demography\\
+  Australian National University, Australia
+  \vspace{0.4cm}\\
+  Professor \textbf{David Blake}, Ph.D.\\
+  Pensions Institute\\
+  Cass Business School\\
+  City University London, United Kingdom
+  \vspace{0.4cm}\\
+  Professor \textbf{Dorte Gyrd--Hansen}, Ph.D. (chair)\\
+  Danish Centre for Health Economics\\
+  Institute of Public Health\\
+  University of Southern Denmark, Denmark
+}
+
+
+\newpage
+\addtocontents{toc}{\protect\setstretch{1.15}}
+\tableofcontents
+
+
+\chapter*{Preface and acknowledgements}
+\addcontentsline{toc}{chapter}{Preface and acknowledgements}
+This thesis has been written during my appointment as Ph.D. Research Fellow at the Institute of Public Health within the University of Southern Denmark and during my research stay at the Australian National University, from March 2015 to October 2018. The work was conducted within the \emph{Modelling and forecasting age-specific death at older ages} project [No.95--103--31186], with financial support of the SCOR Corporate Foundation for Science. 
+
+Early in my professional career, while working as a life actuary for insurance companies, I learned that the decisions and risks we will adopt and experience in the future can be measured in present terms. Mortality is one of the risks we face every day, with enormous implications at different levels: for us as individuals, for our families and friends, for our community, and ultimately for society. The ability of describing the length of life in mathematical terms started to fascinate me to the point that I decided to dedicate my time to explore this topic and to make this the focus of my research. I have had the fortune to cross paths with people who share my enthusiasm and interests. Many of them have had a significant impact in the development of my career. Notably, Adriana Lecu who is probably the first person who showed me what a life table is and she also convinced me to start an actuarial career. Professor James W. Vaupel strongly supported my academic work and ideas. He also convinced me to turn down a flashy job offer from Vienna and move to Odense to work under his supervision. These are decisions I do not regret.
+
+In Denmark is where I met Professor Vladimir Canudas--Romo. He became my mentor and close advisor and under his constant guidance I was able to raise the quality of my publications. For this I offer my sincere gratitude to him. 
+
+I also thank my co-authors: Ugofilippo Basellini, Jos\'{e} Manuel Aburto and Adam Lenart for constructive collaborations, critical revision of the manuscripts and for sharing their wisdom with me. Ugo demonstrated an impressive attention to details in all our common projects in such a way that would make you think that the ideas that passed his inspection will stand to any criticism without losing their value. Jos\'{e} was able to provide alternative solutions to the problems under investigation, thus validating our work. Adam is one of the first researchers I started sharing ideas with since my arrival in Odense. Even now I remember how intimidatingly smart his remarks were during our conversations. If one would like to become an accomplished data scientist he/she should aim at being Adam Lenart. 
+
+These years of research would have not been the same without all MaxO members, who make our work place interesting, motivating and friendly. I cannot not mention Anthony Medford, with whom I did not publish any work in the last four years but our endless discussions on actuarial topics motivated me to find practical applications to my work. I am still hoping for a joint collaboration Anthony! Special thanks to Marie--Pier Bergeron--Boucher, S{\o}ren Kj{\ae}rgaard, Jonas Sch\"{o}ley, Silvia Rizzi, Rune Lindahl--Jacobsen, Jim Oeppen, and of course, Catalina Torres, who has been by my side during this process. Thank you for your kindness, patience, support and enthusiasm Catalina! Thanks to the entire MaxO group.
+
+Finally, many thanks to my family and friends in Romania. To my parents Maria and Victor Pascariu for the unconditional love, support and understanding. To my siblings Florin Pascariu and Silvia--Simona Coman for great moments together and the constant encouragement you gave me.
+
+
+
+% -------------------------------------------------------------
+\chapter*{English summary}
+\addcontentsline{toc}{chapter}{English summary}
+
+For the world as a whole, life expectancy has more than doubled over the past two centuries. This transformation of the duration of life has greatly enhanced the quantity and quality of people’s lives. It has fuelled enormous increase in economic output and in population size, including an upsurge in the number of elderly. Understanding human mortality dynamics is of utmost importance in the context of rapid ageing and increasing length of life experienced by most populations nowadays. The present thesis highlights new and innovative methods for estimating and projecting future mortality levels among humans.
+
+Three studies have been devised, which develop and analyse relevant statistical models for addressing uncertainty in future mortality. The studies are in the form of research manuscripts that are/will be published in scientific journals together with software packages ensuring the reproducibility of the results. In the first study, a method for forecasting life expectancy for females and males is developed. To forecast female life expectancy, the method is based on the analysis of the gap in life expectancy between females in a given country and females in record-holding countries. To forecast male life expectancy, the gap between male life expectancy and female life expectancy in a given country is analysed. In the second study, we explore a new approach inspired by indirect estimation techniques applied in demography, which can be used to estimate full life tables at any point in time, based on a given value of life expectancy at birth or at any other age. The third study makes use of the statistical properties of a probability density function in order to estimate the distribution of deaths of a population in the future. We employ time series methods for forecasting a limited number of central statistical moments and then reconstruct the future distribution of deaths using the predicted moments. The estimation of the density function is done using the maximum entropy approach.  
+
+The results show that mortality modelling can be tackled from different perspectives and higher accuracy of the future trajectories can be obtained when compared with the more traditional extrapolative methods based of age specific death rates or probabilities.
+
+% -------------------------------------------------------------
+\chapter*{Danish summary}
+\addcontentsline{toc}{chapter}{Danish summary}
+
+I l{\o}bet af de sidste to hundrede {\aa}r har vi oplevet mere end en fordobling i den forventede levealder. Denne transformation af levealderen har haft stor betydning for menneskets livskvantitet og -kvalitet. Det har bidraget til en enorm {\o}konomisk v{\ae}kst, men ogs{\aa} i forhold til befolkningsst{\o}rrelsen, som nu oplever en st{\o}t v{\ae}kst i befolkningen af {\ae}ldre. Det er yderst vigtigt, at vi forst{\aa}r dynamikken bag menneskets d{\o}delighed for at forst{\aa} den hurtige v{\ae}kst i forventet levealder, som de fleste befolkningsgrupper oplever i dag. Denne afhandling s{\ae}tter fokus på nye og innovative metoder til at forudsige den fremtidige levealder hos mennesker. 
+
+Der er gennemf{\o}rt tre studier, som udvikler og analyserer relevante statistiske modeller, der im{\o}dekommer usikkerhed vedr. det fremtidige niveau af d{\o}delighed. Studierne er gennemf{\o}rt som forskningsmanuskripter, som enten er, eller vil blive, offentliggjort i videnskabelige tidsskrifter sammen med software, som sikrer gengivelse af de opnåede resultater. I det f{\o}rste studie udvikles en metode til at fremskrive den forventede levealder for m{\ae}nd og kvinder. For at fremskrive kvinders forventede levealder baseres metoden p{\aa} en analyse af afstanden imellem m{\ae}nd og kvinders forventede levealder i et givent land. I det andet studie udforskes en ny tilgang, som er inspireret af indirekte estimationsteknikker anvendt indenfor demografi. Denne tilgang kan bruges til at estimere den komplette overlevelsestavle p{\aa} et hvilket som helst tidspunkt, baseret p{\aa} den forventede levealder ved f{\o}dsel eller ved en hvilken som helst alder. Det tredje studie g{\o}r brug af de statistiske egenskaber ved en t{\ae}thedsfunktion for at kunne estimere en befolkningsgruppes fremtidige d{\o}dsfaldsfordeling. Vi anvender tidsseriemetoder til at fremskrive et begr{\ae}nset antal centrale statistiske momenter for derefter at rekonstruere den fremtidige fordeling af d{\o}dsfald ud fra de fremskrevne momenter. Estimering af t{\ae}thedsfunktionen baseres p{\aa} maximal entropi metode.
+
+Resultaterne viser, at modellering af d{\o}delighed kan h{\aa}ndteres fra forskellige udgangspunkter og at der opn{\aa}s st{\o}rre n{\o}jagtighed for fremtidige d{\o}delighedsforl{\o}b sammenholdt med mere traditionelle extrapolerende metoder, baseret p{\aa} aldersspecifikke d{\o}delighedsrater eller sandsynlighed for d{\o}dsfald.
+
+% -------------------------------------------------------------
+\chapter*{Papers in the Thesis}
+\addcontentsline{toc}{chapter}{Papers in the Thesis}
+
+\subsection*{Manuscripts included in this dissertation}
+
+\textbf{Paper I}\\
+ Pascariu M.D., Canudas--Romo V. and Vaupel J.W. (2018). The double-gap life expectancy forecasting model. \textit{Insurance: Mathematics and Economics}; 78, 339--350. DOI: \href{https://doi.org/10.1016/j.insmatheco.2017.09.011}{10.1016/j.insmatheco.2017.09.011}
+\vspace{0.5cm}\\
+\textbf{Paper II}\\
+Pascariu M.D., Basellini U., Aburto J.M. and Canudas-Romo V. (2018). The Linear Link: Deriving Age-Specific Death Rates from Life Expectancy.\\[5mm]
+\textbf{Paper III}\\
+Pascariu M.D., Lenart A. and Canudas--Romo V. (2018). Forecasting mortality using statistical moments.\\[5mm]
+\textbf{Published Software 1: R Package}\\
+Pascariu M.D. (2017). MortalityLaws: Parametric Mortality Models, Life Tables and HMD. \textit{The Comprehensive R Archive Network (CRAN)}. URL: \url{https://cran.r-project.org/web/packages/MortalityLaws}
+
+\newpage
+\subsection*{Other co-authored works during the PhD, not included in the dissertation:}
+
+\textbf{Paper IV}\\
+Pascariu M.D., Dańko M.J., Schöley J. and Rizzi S. (2018). ungroup: An R package for efficient estimation of smooth distributions from coarsely binned data. Journal of Open Source Software, 3(29), 937. DOI: \url{https://doi.org/10.21105/joss.00937}
+\vspace{0.5cm}\\
+\textbf{Paper V}\\
+Bergeron Boucher M--P., Canudas--Romo V., Pascariu M.D. and Lindahl--Jacobsen R. (2018). Modelling and forecasting sex differences in mortality: A sex--ratio approach (Submitted to \textit{Genus: Journal of Population Sciences}).\\[5mm]
+\textbf{Published Software 2: R Package}\\
+Pascariu M.D. (2018). MortalityGaps: The Double--Gap Life Expectancy Forecasting Model. \textit{The Comprehensive R Archive Network (CRAN)}. URL: \url{https://cran.r-project.org/web/packages/MortalityGaps}\\[5mm]
+\textbf{Published Software 3: R Package}\\
+Schoeley J., Pascariu M.D., Villavicencio F. and Danko M.J. (2017). pash: Pace--Shape Analysis of Life--tables. \textit{GitHub}. URL: \url{https://github.com/jschoeley/pash}
+
+
+% -------------------------------------------------------------
+\chapter*{Abbreviations}
+\addcontentsline{toc}{chapter}{Abbreviations}
+
+\begin{table}[h]
+	\begin{tabular}{p{2cm}l}
+		AIC & Akaike Information Criterion\\
+		BIC & Bayesian Information Criterion \\
+		ARIMA & Autoregressive Moving Average Model\\
+		CBD & Cairns--Blake--Dowd Model\\
+		DG & Double--Gap Life Expectancy Forecasting Model\\
+		LC & Lee--Carter Model\\
+		LL & Linear--Link Model\\
+		H & Shannon Entropy\\
+		HMD & Human Mortality Database\\
+		KPSS & Kwiatkowski--Phillips--Schmidt--Shin unit-root test\\
+		MaxEnt & Maximum--Entropy Method for Density Estimation\\
+		MEM & Maximum--Entropy Mortality Model\\
+	  ME & Mean Error\\
+    MAE & Mean Absolute Error\\
+    MAPE & Mean Absolute Percentage Error\\
+    sMAPE & Symmetric Mean Absolute Percentage Error\\
+    sMRAE & Symmetric Mean Absolute Relative Error\\
+    MASE & Mean Absolute Scaled Error\\
+    OLS & The ordinary least squares method for estimating the unknown parameters\\
+    SVD & The singular-value decomposition method
+    
+	\end{tabular}
+\end{table}
+\clearpage
+
+
+\chapter*{Mathematical notation}
+\addcontentsline{toc}{chapter}{Mathematical notation}
+
+\renewcommand*{\arraystretch}{0.7}
+\begin{longtable}[h]{p{2cm}p{13.3cm}}
+	\multicolumn{2}{l}{Mortality Laws} \\
+	$\mu_{x}$ & Force of mortality at age $x$ \\
+	$m_x$ & Central death rate at age $x$ \\
+	$q_x$ & Probability of dying at age $x$ \\
+	$p_x$ & Surviving probability at age $x$ \\
+	$e_x$ & Remaining life expectancy at age $x$ \\
+		&\\
+	\multicolumn{2}{l}{Double--Gap Model}\\
+	$D_{k,x,t}$ & The gap between female life expectancy and the best--practice trend\\
+	            & in the world at age $x$ for country $k$ and time $t$\\
+	$G_{k,x,t}$ & The gap between male and female life expectancy\\
+	$e^{f}_{k,x,t}$ & Female remaining life expectancy in country $k$, age $x$ and time $t$\\
+	$e^{m}_{k,x,t}$ & Male remaining life expectancy in country $k$, age $x$ and time $t$\\
+	$e^{bp}_{x,t}$ & Best-practice female life expectancy at age $x$ and time $t$\\
+	$\mu_{k,x}, \phi, \theta, \beta$ & parameters of the DG model\\
+	$\epsilon$ & residuals i.e. independent and identically distributed random variables\\ 
+	           & normally with mean zero and variance $\sigma$\\
+		&\\
+	\multicolumn{2}{l}{Linear--Link Model}\\
+	$m_{x,t}$ & Central death-rate at age $x$ and time $t$\\
+	$e_{\theta,t}$ & Life expectancy at age $\theta$ and time $t$\\
+	$\beta, \nu, k$ & Estimate parameters of the LL model\\
+	$\varepsilon$ & Deviance residuals, independent and identically distributed random\\ 
+	           & variables normally with mean zero and variance $\sigma$\\
+		&\\
+	\multicolumn{2}{l}{Maximum Entropy Mortality Model}\\
+	$\mu_n$ & The $n$--th statistical moment of the distribution of deaths\\
+	$f(x)$ & Density function\\
+	$f_N(x)$ & Approximations for $f(x)$ based on the first $N+1$ statistical moments\\
+	$H$ & Shannon Entropy\\
+	$\mathcal{L}$ & Lagrangian function\\
+	$\lambda$ & Lagrange multipliers
+	
+\end{longtable}
+
+\end{document}
+

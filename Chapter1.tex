@@ -1,0 +1,288 @@
+\documentclass[Thesis.tex]{subfiles}
+
+% ---------------------------------------------------------------------------
+\begin{document}
+
+\pagenumbering{arabic}
+\chapter*{Introduction}
+\stepcounter{chapter}
+\addcontentsline{toc}{chapter}{Introduction}
+
+\begin{tabular}{lr}
+\begin{minipage}[t]{0.2\textwidth}
+\mbox{}
+\end{minipage}
+\begin{minipage}[t]{0.79\textwidth}
+\textit{We may regard the present state of the universe as the effect of its past and the cause of its future. An intellect which at a certain moment would know all forces that set nature in motion, and all positions of all items of which nature is composed, if this intellect were also vast enough to submit these data to analysis, it would embrace in a single formula the movements of the greatest bodies of the universe and those of the tiniest atom; for such an intellect nothing would be uncertain and the future just like the past would be present before its eyes.}
+\newline -- Pierre Simon Laplace (\citeyear{laplace1825}) -- A Philosophical Essay on Probabilities\\
+\end{minipage}
+\vspace{0.4cm}
+\end{tabular}
+
+Longevity risk, defined as the risk that people live longer than expected, represents an important issue for current societies. Although longevity advancements increase the productive life span and welfare of millions of individuals, there are also increasing costs for pay-as–you-go (PAYG) and defined benefits pension systems, threatening the long-term solvency of the financial institutions due to increases in unanticipated future liabilities. Additionally, if the unhealthy life expectancy is extended as a result of improvements in mortality rates at advanced ages, the public health expenditures are affected. To deal with these rapid changes and avoid negative consequence, academics and professionals alike have acknowledged the significance and necessity of accurately assessing the longevity risk. Considerable effort has been dedicated to finding and developing better methods and mathematical models to predict the future. These are mainly statistical and epidemiological methods based on the observation of past trends and on the identification of determinants of the decline in physiological capacities with age. For instance, \cite{pollard1987} identified a variety of predictive models of age-specific death rates based on: projection by extrapolation of transformation of death-rates and mortality probabilities, projection by cause of death, projection by reference to model life tables, projection by reference to a \emph{law of mortality}, projection by reference to another population, and combinations of these methods.
+
+If the performance of the proposed methods on the short-term can be subject to debate, in the long run \cite{oeppen2002} showed that demographers and actuaries consistently underestimated the increase in life expectancy by embracing unrealistic assumptions or often ignoring the long term trends.
+
+In order to identify, elucidate and quantify the future longevity, one must employ forecasting models that adequately capture the effects of all the moving parts of the mechanism driving the changes in life expectancy. Even if this is, like Laplace's vision, an unrealistic and impossible endeavour, tackling the stochasticity of the evolution of mortality from multiple perspectives is what validates our predictions.
+
+
+\section{History of Mortality Modelling}
+
+Modelling human mortality has been an important and active area of research for demographers, insurance mathematicians and medical scholars since \cite{graunt1662} first examined mortality in London to produce the first publication that was concerned mostly with public health statistics. Graunt’s work showed that, while individual life-length was uncertain, there was a more predictable pattern of mortality in groups and causes of death. \cite{halley1693} showed how to actually construct a non-deficient mortality table from empirical birth-death data and even succeeded to present a method to perform a life annuity calculation based on this table. Such early tables were empirical and calculation was time consuming. Theoretical mortality modelling first began with \cite{demoivre1725}, who postulated a uniform distribution of deaths model, and showed simplified annuity calculation methods. Taking a biological approach to mathematical modelling, \cite{gompertz1825} assumed that the force of mortality $\mu_x$ in adulthood shows a nearly exponential increase, where the two parameters of his model are positive and vary with the level of mortality and the rate of increase in mortality with age. The Gompertz model and its modified version by \cite{makeham1867}, where an additional constant is added to take into account the background mortality due to causes unrelated to age, were widely used as the standard models for adult mortality in humans \citep{kirkwood2015, olshansky1997}; and then extended further to animal species in general \citep{sacher1977}. Early discovery of important notions in the filed of mortality modelling were made by Danish scientists like Oppermann (\citeyear{oppermann1870}) and Thiele (\citeyear{thiele1871}), with exposure to actuarial science and active in insurance companies at that time. However, the recognition of their work came only many years later because of a combination of factors, ranging from the publication of the new ideas in inaccessible places and uncommon language like Danish, to the lack of interdisciplinary collaboration \citep{hoem1983}. 
+
+\begin{figure}[!t]
+\includegraphics[width=1\linewidth]{./figures/Chapter1/ML_timeline} 
+\caption{\textit{Mortality modelling timeline}}
+\label{fig:ML_timeline}
+\end{figure}
+
+After one century of developments, the structure of the mathematical models became increasingly complex and capable of accurately capturing all the spectrum of the mortality intensity experienced by humans. For example \cite{heligman1980} proposed an eight-component mortality model that fits the entire age range,
+
+\begin{equation}
+\mu_x = A^{(x+B)^C} + D e^{-E (\log x - \log F)^2} + GH^x.
+\end{equation}
+
+Figure \ref{fig:ML_fullfit} shows how this model can fit the entire age-range by decomposing the age-pattern of mortality into three pieces, each part with a relatively small number of parameters to control it. There are three parameters (A, B and C) to describe child mortality, three to describe a very flexible accident hump (D, E and F) typically occurring in young adulthood, and finally two parameters (G and H) to describe mortality at older ages. The main disadvantage of this model is that in its traditional form is difficult to fit and it does not account for uncertainty.
+
+\begin{figure}[!t]
+\includegraphics[width=1\linewidth]{./figures/Chapter1/ML_fullfit} 
+\caption{\textit{Observed and fitted death rates between age 0 and 80 for male population in Sweden. The mortality is extrapolated up to age 100.}}
+\label{fig:ML_fullfit}
+\end{figure}
+
+\cite{siler1983} developed a five-parameter competing-hazard model in order to capture mortality during "immaturity", adulthood and senescence and to facilitate inter-specific comparison, by assigning location and dispersion parameters respectively for the three important sections of the mortality curve. \cite{thatcher1998} performed studies to fit different mathematical models to different reliable data sets on adult and oldest-old mortality (aged 80 and above) covering the few recent decades. They evaluated the comparative compatibility of those models to the data, established the logistic model as the best mathematical model of human adult mortality, replacing the widely used Gompertz model and Makeham model. The logistic model assumes that the force of mortality $\mu_x$ is a logistic function of age $x$.
+
+% Table 1 --------------------------------------------
+% {\footnotesize
+\renewcommand*{\arraystretch}{1.1}
+\begin{longtable}{lcl}
+\toprule 
+\textbf{Author}  & \textbf{Publication} & \textbf{Model} \\ 
+\hline
+De Moivre & \citeyear{demoivre1725} & $ \mu(x) = 1 / (\omega - x)$\\
+Gompertz & \citeyear{gompertz1825} & $ \mu(x) = Ae^{Bx}$\\
+Gompertz &  -- & $ \mu(x) = \frac{1}{\sigma }exp\left\{\frac{x-M}{\sigma }\right\}$\\
+Inverse--Gompertz & -- & $ \mu(x) = {\frac{1}{\sigma }exp\left\{\frac{x-M}{\sigma }\right\}}/{\left(exp\left\{e^{\frac{-(x-M)}{\sigma }}\right\}-1\right)}$\\
+Makeham & \citeyear{makeham1867} & $ \mu(x) = Ae^{Bx} + C$\\
+Makeham & -- &$ \mu(x) = \frac{1}{\sigma }exp\left\{\frac{x-M}{\sigma }\right\} + C$\\
+Oppermann & $\leq$ 1870 & $ \mu(x) = Ae^{Bx} + (C + Dx)e^{-Ex}$\\
+Oppermann & \citeyear{oppermann1870} & $ \mu(x) = Ax^{-\frac{1}{2}} + B + Cx^{\frac{1}{2}}$\\
+Thiele & \citeyear{thiele1871} & $ \mu(x) = A_1e^{-B_1x} + A_2e^{-\frac{1}{2}B_2{\left(x-C\right)}^2} + A_3e^{B_3x}$\\
+Wittstein \& Bumstead & \citeyear{wittstein1883} & q(x) = $\frac{1}{B}A^{{-(Bx)}^N} + A^{{-(M-x)}^N}$\\
+Steffenson & \citeyear{steffensen1930} & $\log_{10} s(x) = 10^{-A\sqrt{x} - B} + C$\\
+Perks & \citeyear{perks1932} &$\mu(x) = (A + BC^x) / (BC^{-x} + 1 + DC^x)$\\
+Harper & \citeyear{harper1936} & $log_{10}s(x) = A + 10^{B\sqrt{x} + Cx + D}$\\
+Weibull & \citeyear{weibull1951} & $\mu(x) = \frac{1}{\sigma }{\left(\frac{x}{M}\right)}^{\frac{M}{\sigma}-1}$\\
+Inverse--Weibull & -- &$\mu(x) = {\frac{1}{\sigma }{\left(\frac{x}{M}\right)}^{-\frac{M}{\sigma}-1}}/{\left(exp\left\{{\left(\frac{x}{M}\right)}^{-\frac{M}{\sigma }}\right\}-1\right)}$\\
+Van der Maen & 1943 & $\mu(x) = A + Bx + Cx^2 + I/(N - x)$\\
+Van der Maen & 1943 & $\mu(x) = A + Bx + I/(N - x)$\\
+Quadratic & -- & $\mu(x) = A + Bx + Cx^2$\\
+Beard & \citeyear{beard1971} & $\mu(x) = KAe^{Bx} / (1 + Ae^{Bx})$\\
+Siler & \citeyear{siler1983} & $\mu(x) = A_1e^{-B_1x} + A_2 + A_3e^{B_3x}$\\
+Heligman--Pollard & \citeyear{heligman1980} & $ q(x)/p(x) =  A^{{\left(x+B\right)}^C}+De^{-E{\left({\mathrm{ln} x\ }-{\mathrm{ln} F\ }\right)}^2}+GH^x$\\
+Heligman--Pollard & \citeyear{heligman1980} & $ q(x) = A^{{\left(x+B\right)}^C}+De^{-E{\left({\mathrm{ln} x\ }-{\mathrm{ln} F\ }\right)}^2} + \frac{GH^x}{1+GH^x}$\\
+Heligman--Pollard & \citeyear{heligman1980} & $ q(x) = A^{{\left(x+B\right)}^C}+De^{-E{\left({\mathrm{ln} x\ }-{\mathrm{ln} F\ }\right)}^2} + \frac{GH^x}{1+KGH^x}$\\
+Heligman--Pollard & \citeyear{heligman1980} & $ q(x) =  A^{{\left(x+B\right)}^C}+De^{-E{\left({\mathrm{ln} x\ }-{\mathrm{ln} F\ }\right)}^2}+ \frac{GH^{x^K}}{1+GH^{x^K}}$\\
+Rogers--Planck & \citeyear{rogers1984} & $q(x) = A_0 + A_1e^{-Ax} + A_2e^{\left\{B(x - U) - e^{-C(x - U)}\right\}} + A_3e^{Dx}$\\
+Martinelle & \citeyear{martinelle1987} & $ \mu(x) = (Ae^{Bx} + C)/(1 + De^{Bx}) + Ke^{Bx}$\\
+Carriere\tnote{*} & \citeyear{carriere1992} & $S(x) = \psi_1 S_1(x)+\psi_2 S_2\left(x\right)+\psi _3 S_3\left(x\right)$\\
+Carriere\tnote{*} & \citeyear{carriere1992} & $S(x) = \psi_1 S_1(x)+\psi_4 S_4\left(x\right)+\psi _3 S_3\left(x\right)$\\
+Kostaki & \citeyear{kostaki1992} & $q(x)/p(x) = A^{{(x+B)}^C}+De^{-E_{i}{({\mathrm{ln} x\ }-{\mathrm{ln} F\ })}^2}+GH^x$\\
+Kannisto & \citeyear{thatcher1998} & $\mu(x) = Ae^{Bx} / (1+Ae^{Bx})$\\
+Kannisto--Makeham & -- & $\mu(x) = Ae^{Bx} / (1+Ae^{Bx}) + C$\\
+\bottomrule
+\caption{Main parametrization functions for human mortality}
+\label{tbl:laws}
+\end{longtable}
+% }
+% --------------------------------------------
+
+The above models describe mortality at a fix point in time; however, actual mortality is stochastic and evolving continuously. Thus, while the mortality models described above are static, the parameters must be fit periodically to accommodate changes in mortality patterns.
+
+\section{Mortality Forecasting}
+
+Since \cite{malthus1798}, demographic forecasting became more prominent, and the desire to anticipate future changes in the composition and structure of populations lead to the development of cohort-component forecasting methods. The first to use these techniques was \cite{cannan1895}, who prepared a cohort component forecast for England and Wales. By the end of the 1920’s, such forecasts had also been made for the Soviet Union by Tarasov in 1922 \citep{degans1999}, for the Netherlands by \cite{wiebols1925}, for Sweden by \cite{wicksell1926}, and for the United States by \cite{whelpton1928}.
+
+At the beginning of the twentieth century, when demographers were developing the cohort-component forecasting system, statisticians established the foundations of the so called stationary processes. This theory was based on a linear transformation of white noise. Although the main features of the theory were essentially perfected by the beginning of the 1950’s \citep{doob1953}, their practical application in statistics did not become standard until the publication of Box and Jenkins (\citeyear{box1970}). Early examples of their use in demography include \cite{saboia1974, saboia1977}. The popularity of these methods is related to their great flexibility, and to the fact that they allow for the incorporation of effects of changes in behavioural and socio-economic variables in forecasts and permit the construction of confidence intervals \citep{tabeau2001}.
+
+Until 1980s, the mathematical models used in directly forecasting the mortality rates or life expectancy were relatively simple and involved a fair degree of subjective judgement. Over the past thirty years, a number of new approaches have been developed for forecasting mortality using stochastic models such as \cite{alho1990, alho1991, mcnown1989, mcnown1992, bell1991}, and Lee and Carter (\citeyear{lee1992}, henceforth LC). The main advantage of stochastic models is that the output is not a single figure but a distribution. LC proposes a log-bilinear model for mortality rates incorporating both age and year effects:
+
+\begin{equation}
+\ln m(x,t) = a(x) + b(x)k(t) + \varepsilon(x,t)
+\end{equation}
+
+where, $m(x,t)$ is the observed central death rate at age $x$ in year $t$, $a(x)$ represents the average age-specific pattern of mortality, $b(x)$ is a pattern of deviations from the age of profile as the mortality index $k(t)$ varies, and finally $\varepsilon(x,t)$ denotes the residual term at age $x$ and time $t$.
+
+Lee and Carter's work has been widely cited and it is also used for long-run forecasts of age-specific mortality rates by the U.S. Bureau of the Census as a benchmark model, see \cite{hollmann2000}. Moreover, since that paper, most other models attempting to assess both time and age evolution of mortality have started with the LC framework. Numerous papers since \cite{lee1992} have tried to improve upon their model by adding more principal components, or a cohort effect, or any range of similar statistical quantities. \cite{booth2006} modify the LC model by optimally choosing the time period over which to fit the model and adjust the index of mortality, $k(t)$, to fit the total number of deaths in each year. \cite{dejong2006} reduced the number of parameters in LC to model mortality rates as a smoothed state space model. \cite{yang2010} take a further step and use multiple principal components to expand the LC model. \cite{Chen2009} introduce jumps into modelling the state variable, found in \cite{lee1992}, to increase goodness of fit measures and price insurance linked securities. \cite{deng2012} use a more advanced jump diffusion model to fit the temporal state variable and \cite{li2011} identify non-linearities in the temporal state variable. A cohort effect, which incorporates the year of birth into the model, is added to the LC model in \cite{renshaw2006}. And more recently, \cite{mitchell2013} used a methodology similar to LC to model the changes in log mortality rates rather than levels of log mortality rates.
+
+On the other hand, a totally different approach to mortality modelling emerged at the beginning of 2002 when two important articles were published: \cite{oeppen2002} and \cite{white2002}. Oeppen and Vaupel showed that life expectancy at birth in the record-holding countries has increased linearly since 1840. \cite{white2002} also found a linear trend in sexes combined life expectancy in 21 industrial nations from 1955 and 1995. Figure \ref{fig:oeppen2006} shows some details of the probable trajectories of limits and convergence for average life expectancy over the past four centuries. The vertical bars show the inter-quartile range of life expectancy for countries containing half the World’s population. These emphasize three massive changes: rapid improvement in life expectancy, greater symmetry in the distribution, and the globalization of mortality experience \citep{oeppen2006}.
+
+\begin{figure}[htb]
+\includegraphics[width=1\linewidth]{./figures/Chapter1/Oeppen2006Fig1} 
+\caption{\textit{Limits and convergence for national average female life expectancy at birth}}
+\subcaption*{Source: \cite{oeppen2006}}
+\label{fig:oeppen2006}
+\end{figure}
+
+According to \cite{oeppen2002}, this linear rise may be the most remarkable accomplishment of mass human endeavour ever achieved. Yet little research has been done on why the revolution in human longevity started about 200 hundred years ago, why the revolution started in Scandinavia, and why progress in increasing record life expectancy has been so steady. Both findings, Oeppen--Vaupel and White, challenge the view that
+
+risks of death are fundamental and age at death is derivative, 
+
+in a world dominated by LC type of forecasting models where the main objective is to project the age-specific death rates and afterwards to derivate the other life table measures.
+
+\cite{torri2012} started to build on this methodology and published a model that at first forecasts the world’s record life expectancy and then the gap between the record and the current life expectancy of a particular country/population of interest assuming a convergence to the forecasted record level. Also, the United Nations and US Census Bureau produces many of its current deterministic projections by extrapolating broad summaries of population processes, and then breaking them down into age-specific rates using model schedules and relational models, to yield the age- and sex-specific fertility, mortality, and migration rates that are required by the standard cohort component population projection method. And more recently \cite{raftery2013} propose an approach to forecasting life expectancy directly using a random walk model with a non-constant drift and a Bayesian hierarchical model, which allow estimating different rates of improvement in life expectancy for each country.
+
+\newpage
+\section{Aims}
+
+The overall rationale behind this thesis is to provide alternative solutions for demographers and actuaries to the problem of mortality modelling and forecasting, to estimate mortality indices and actuarial life tables using the forecasts and to evaluate the applicability of the solution in a range of settings.
+
+\begin{labeling}{Aims}
+\item [Aim I:] To develop a method for forecasting female and male life expectancy based on analysis of the gap between female life expectancy in a country compared with a given benchmark and also by assessing the sex-gap evolution. (Paper I).
+\item [Aim II:] To explore the relationship between life expectancy and age-specific deaths rates and develop a statistical model inspired by indirect estimation techniques applied in demography , which can be used to estimate full life tables at any point in time, based on a given value of life expectancy at birth or any other age. (Paper II).
+\item [Aim III:] To propose a new method of predicting the death distributions of a certain population by making use of the properties of statistical moments given by a density function. (Paper III).
+\item [Aim IV:] To demonstrate the applicability and accuracy of the developed methods by creating user-friendly open-source software packages. (R packages).
+\end{labeling}
+
+
+% -------------------------------------------------------------
+\newpage
+\section{Methods and Data}
+
+The present thesis groups a series of new methods and applications in order to reach the defined aims. A brief description of these methods are provided in this section. The detailed models are presented in the thesis manuscripts.
+
+\subsection{Forecasting Life Expectancy}
+
+Life expectancy is highly correlated over time among countries and between males and females. The objective is to construct a model for forecasting life expectancy making use of the correlations existing among countries and between sexes. Our approach to forecast life expectancy combines separate forecasts to obtain joint male and female life expectancies that are coherent with the best-practice trend. The trend used as benchmark in the manuscript I is that proposed by \cite{oeppen2002} for females in the record-holding countries. This trend was used due to its remarkable linear regularity at age 0. 
+
+To predict future life expectancy levels, the benchmark given by the best-practice life expectancy is identified in order to get a general sense of the direction and the rate of change in human mortality. The gap between female life expectancy in a given population and the best-practice trend in the world, $D_{k,x,t}$, is forecast using a classic time series model, thus determining future female life expectancy. The gap between male and female life expectancy, $G_{k,x,t}$  is forecast with the help of a mixed model to obtain the country specific male life expectancy.
+
+\begin{equation}
+\triangledown^d D_{k,x,t}= 
+\underbrace{\mu_{k,x}}_{\text{Drift}}
++ \underbrace{ \sum_{i=1}^{p} \phi_i \triangledown^d D_{k,x,t-i}}_{\text{Regression}} 
++\underbrace{\epsilon^{(1)}_{k,x,t} + \sum_{j=1}^{q} \theta_j \epsilon^{(1)}_{k,x,t-j}}_{\text{Smoothed noise} }
+\label{eq:Gap1}
+\end{equation}
+
+\begin{equation} 
+G^{*}_{k,x,t} = \left\{\begin{matrix}
+ \beta_{0}
++ \underbrace{\beta_{1}G_{k,x,t-1} + \beta_{2}G_{k,x,t-2}}_{\text{Autoregressive model}}  + \underbrace{\beta_{3}(e^{f}_{k,x,t}-\tau)_{+}}_{\substack{\text{Level associated with } \\ \text{life expectancy when the gap} \\ \text{starts narrowing}}}  
++ \epsilon^{(2)}_{k,x,t} & \text{if,} & e^{f}_{k,x,t} \leq A,\\ 
+
+& & \\
+
+\underbrace{G_{k,x,t-1} + \epsilon^{(3)}_{k,x,t}}_{\text{Random walk}}  
+& \textit{,} & \text{otherwise.}
+\end{matrix}\right.
+\label{eq:Gap2}
+\end{equation}
+
+Once the two gaps are identified and their future trend determined, the core of the proposed double-gap model can be summarized by two equations: first future female life expectancy at age $x$, time $t$ and country $k$, $e^{f}_{k,x,t}$, can be obtained as the difference between future best-practice life expectancy at that age and time, $e^{bp}_{x,t}$, and a predicted gap or distance, $D_{k,x,t}$, of the performance of the specific lagging country or region,
+ 
+\begin{equation}
+e^{f}_{k,x,t}= e^{bp}_{x,t} - D_{k,x,t}.
+\end{equation}
+
+Similarly, future life expectancy for the male population is modelled as the difference between future female life expectancy and the sex gap, $G_{k,x,t}$, in life expectancy,
+
+\begin{equation}
+ e^{m}_{k,x,t}= e^{f}_{k,x,t} - G_{k,x,t}.
+\end{equation}
+
+\begin{figure}[htb]
+\centering
+\begin{subfigure}[t]{0.47\textwidth}
+    \caption*{\textit{Age 0}}
+    \includegraphics[width=\textwidth]{./figures/Chapter2/Figure4A.pdf}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.47\textwidth}
+    \caption*{\textit{Age 65}}
+    \includegraphics[width=\textwidth]{./figures/Chapter2/Figure4D.pdf}
+\end{subfigure}\hfill
+\caption{\textit{Actual and forecast life expectancy at birth and at age 65 generated by the DG, LC and CBD models for females and males in the USA, 1950-2050. Prediction interval at 80\% and 95\% level are shown only for the DG model.}}
+\end{figure} 
+
+The current model is not restricted to the usage of a particular benchmark, countries or regions. One may decide to use a different trend depending on the best performing model for each case based on their past evaluation. Also, the choice of the historical frame to be fitted is as important as the choice of the model. For example, predicting life expectancy at age 65 based on a trend starting in the 19th century would underestimate the future improvements in human mortality. No forecasting model is meant to be used in prediction into an indefinite future. The rate of increase in life expectancy may vary depending on the selected historical period.
+
+Having simple methods to predict future mortality levels is of high importance because of the growing significance this filed is acquiring in society. Justified by the accuracy and simplicity demonstrated, the Double-Gap model represents an addition to the existing family of forecasting models. Today, when so many models exist, the researcher should probably not work simply with one model or approach to modelling the future, but with a combination of them. Thus, the Double-Gap model should be considered as a promising available forecasting tool. 
+
+
+\subsection{Estimating Age-Specific Death Rates}
+
+In predicting demographic processes, such as human mortality, methods involving extrapolation of mortality rates or probabilities are the most common approaches. However, methods based on extrapolating life expectancy directly are very appealing because they offer the same, or higher, level of forecast accuracy but with the advantage of being parsimonious, focusing on one variable rather than several.
+
+We have introduced a simple method, the Linear-Link model, to derive the entire schedule of age-specific death rates, based on a single value of life expectancy and prior knowledge of human mortality patterns. Our method can be regarded as a decomposition approach of the human mortality curve between the general age pattern, $\beta_x$, and an age-specific speed of improvement, $\nu_x$. The method is inspired by: (1) the Log-quadratic model \citep{wilmoth2012} in the sense of using a leading indicator in determining the age pattern of mortality; (2) the model introduced by \cite{sevcikova2016} by adopting an inverse approach to death rates estimation starting from life expectancy; (3) the Lee--Carter model (\citeyear{lee1992}) using the same interpretation of mortality improvement over time and age; and finally (4) the \cite{li2013} method to model the rotation of age patterns of mortality decline for long-term projections.
+
+The model is based on the observed linearity between age-specific death rates, $m_x$, and life expectancy at a certain age, $e_\theta$. It can be seen as a method that links the life expectancy at age $\theta$ at any point in time to a mortality curve estimated from the death rates $m_x$'s that return a life expectancy level of $e_\theta$. To gain precision in the fitting of the death-rates, the Linear-Link model can be extended by including additional parameters:
+
+\begin{equation}
+ \begin{split}
+	\log{m_{x,t}} & = \beta_x\log{e_{\theta,t}} + \nu_xk + \varepsilon_{x,t} 
+	\quad \textrm{for} \quad  x \geq \theta, \\
+	& \sum_{x = \theta}^{\omega} \nu_{x} = 1, 
+	\quad
+	\textrm{and} \quad \nu_{x} \geq 0,
+ \end{split}
+\end{equation}
+
+where $\nu_{x}$ is the speed of mortality improvement over time at age $x$, $k$ is an estimated correction factor independent of time and $\varepsilon_{x,t}$ are independent and identically distributed random variables normally distributed with mean zero and variance $\sigma^2$.
+
+The method can be useful in three different situations: future target life expectancy, life tables for countries with deficient data and historical life table construction.
+
+First, the model can be used in forecasting practice when the level of life expectancy is forecast first. We showed that this model can accurately reconstruct a Lee--Carter forecast starting from a single value of life expectancy at birth. This is important, because the Linear-link model offers the possibility of taking advantage of the more regular pattern of the life expectancy evolution. It is much easier and parsimonious, from a technical perspective to forecast one time series of expectation of life than to extrapolate 100 or 110 series of death probabilities corresponding to each age group. In the same manner adult mortality can be estimated based on a value of life expectancy at an advanced age, say age 65.
+
+Second, the method can be used to build model life tables and to estimate the current age patterns of mortality in poor-data countries or regions, like Sub-Saharan Africa. In this case, the parameters of the model are estimated based on a collection of historical life tables from several regions or populations. Once the parameters have been estimated, and implicitly the model life table, they remain fixed. The relevant mortality curve is simply calibrated in accordance with a single value of life expectancy at birth or any other age instead of child mortality like in the case of \cite{wilmoth2012}. In our analysis, we show examples using high quality data from developed countries in order to demonstrate the efficiency of the model, and to be able to asses the accuracy of the mortality curve reconstruction. However, the estimation procedure and the steps of the algorithm are the same for this case too.
+
+Third, the Linear-Link model can be a useful tool in a variety of research contexts
+of historical demography like backward projections and estimation of mortality levels in historical populations. Due to the existence of scarce non-standardized population data in the past and population census only for the more recent times, the very possibility of projecting mortality backward is of theoretical interest \citep{ediev2011}.
+
+
+\subsection{Forecasting the Distribution of Deaths}
+
+In addition to investigating the evolution of age-specific death rates or the pattern of life expectancy in the future, the problem of identifying possible future longevity levels in a given population can be tackled by analysing the distribution of deaths and the change in its location-shape measures over time. For a distribution, the collection of all the statistical moments uniquely determines its density function.
+
+We consider the classical moment problem where a positive density $f(x)$ is sought from knowledge of its power moments. The method proposed here assess the evolution of observed moments of the distribution of deaths in order to forecast them by employing multivariate time series models and reconstruct the forecast distribution using the maximum entropy approach (\emph{MaxEnt}) developed by \cite{mead1984}. \emph{MaxEnt} offers a definite procedure for the construction of a sequence of approximations for the true density based on the information entropy given by the density. The procedure aims at constructing specific sequences of functions $f_N(x)$ which eventually converge to the true distribution $f(x)$ as the number of moments used, $N$, approaches infinity
+
+\begin{equation}
+M_n = \int_{a}^{\omega} x^n f_N(x) dx, \quad n = 0, 1, 2 \dots, N,
+\end{equation}
+where $M_n$ represents the $n$-th statistical moment of a continuous density function. We denote the estimated density $f_N(x)$ in order to indicate that this density was generate based on a finites number of moments, $N$.  
+
+Taking advantage of the regularity of human mortality, the reconstruction of a density function can be obtained by imposing a prior restriction of the class of function where the solution is sought. In this way, only a small number of moments, usually 3 to 8, are needed in order to determine a good fit. As strategy for finding the local maxima of the entropy functional $\mathcal{L} = \mathcal{L}(f)$, we employ the method of Lagrange multipliers, $\lambda_n$ for the $n$-th moment:
+
+\begin{equation}
+\mathcal{L} = H + \sum_{n=0}^{N} \lambda_n \left[\hat{M}_n - M_n \right].
+\end{equation}
+
+Reconstructing the density function from a set of predicted moments has the advantage of allowing accelerating/decelerating rates of mortality improvement over age and time, identifying in this way the source of longevity risk.
+
+\subsection{Data}
+The data source used in this thesis is the Human Mortality Database (\citeyear{hmd2017}), which contains historical mortality data for homogeneous populations in 43 different countries and territories. The HMD constitutes a reliable data source because it includes high quality data that were subject to a uniform set of procedures, thus maintaining the cross-national comparability of the information.
+
+For the purpose of our analyses we have focused on a subset of these data covering mainly calendar years 1950--2015 and the 0--95 age range in 38 countries and regions, giving 76 sex-specific populations. The selected populations must have sufficient size to allow the fitting of the models and should be unique, meaning that a person included in one population should not be included in others.
+
+The predictive power of the methods is demonstrated by performing in sample forecasts and estimations in the 0--100 age range. Data at higher ages might be unreliable or too sparse for different populations, which would make it difficult to differentiate between data related problems or modelling issues. 
+
+
+% -------------------------------------------------------------
+\section{Overview of the thesis and discussion}
+
+The evolution of human mortality is a complex process that is driven by a large number of factors and can not be explained by a single statistical model. Different approaches can be taken to predicting future mortality. In the current thesis, we introduce three innovative methods that make use of the observed trends in several demographic indicators. 
+
+Manuscript I presents a model built on the idea of a persistent trend in life expectancy over long periods of time that is driving the future development in longevity across countries and populations in a coherent manner. The available data in the Human Mortality Database (HMD) suggests a linear increase in record life expectancy at birth in the world since the mid-19th century. Since then, a few countries have occupied the first position \cite{bengtsson2006}, maintaining their leadership for several years only to be surpassed by other countries that used to lag behind. The evolution of mortality for an individual country can be characterised by periods of rapid developments, stagnation or even deterioration of longevity levels. However, despite of all these possible realizations, history showed that it is reasonable to assume that mortality is driven by a benchmark--like record female life expectancy. We implemented this idea in the so called \emph{Double--Gap} model and tested it using data from all the countries listed in HMD. Detailed results shown for the USA, France and Sweden suggests that DG is capable of generating comparable predictive power with the two most commonly used forecasting models, the Lee--Carter and the Cairns--Blake--Dowd models.
+
+In Manuscript II, an indirect estimation technique is employed to estimate the level of mortality at a given point in time by deriving the age-specific mortality estimates from the observed link between life expectancy and death rates. Life expectancy is an age-aggregated measure and deeper knowledge can be obtained by converting the obtained life expectancy level into age-schedules of death rates and actuarial life tables by exploiting the regularities of age patterns of mortality. Used in the context of forecasting, the \emph{Linear--Link} model demonstrated capabilities in replicating the Lee--Carter forecasts with the advantage of generating graduated mortality estimates.
+
+Manuscript III goes deep into the statistical moments theory and proves that the problem of future development in longevity can be studied from a compositional perspective. A reduction in the probability of dying at young ages does not mean that fewer people will die. It only means that, for most people, death will occur at a later stage in life. Over a long enough time frame death is certain. The central moments of the distribution of deaths give an accurate description of the timing of death experience in a certain cohort or in a given year. If moments are extrapolated, one can use the maximum entropy method to reconstruct the future distribution of deaths. The main advantages of this approach is that it can anticipate where the most rapid change in mortality will occur on the age scale.
+ 
+No statistical model in general and none of the three methods described in this thesis is meant to be used in prediction into an indefinite future. The rate of increase in life expectancy may vary depending on the selected historical period. The choice of the historical frame to be fitted is as important as the choice of the model. 
+
+
+\section*{Reproducible research}
+The presented methods and algorithms are implemented in the format of open source software libraries written in the \texttt{R} programming language \citep{team2018r}. The \texttt{R} packages containing the source code, original data and usage examples can be downloaded and installed from the Comprehensive R Archive Network (\href{https://cran.r-project.org}{\texttt{CRAN}}) or from the author's GitHub repository (\url{https://github.com/mpascariu}). All the results presented in the thesis are reproducible.
+
+
+\end{document}
+

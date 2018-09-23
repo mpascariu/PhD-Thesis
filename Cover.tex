@@ -1,0 +1,133 @@
+\documentclass[12pt, 
+  coverwidth = 210mm,   % A4
+  coverheight = 297mm,  % A4
+  spinewidth = 13mm, 
+  bleedwidth = 2mm, 
+  markcolor = black]{bookcover}
+  
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage[some]{background}
+\usepackage{tikz}
+\usepackage{nopageno}
+\usepackage{mathptmx}
+\usepackage{anyfontsize}
+\usepackage{t1enc}
+
+\newbookcovercomponenttype{center rotate}{
+	\parbox[t][\partheight][c]{\partwidth}{
+	\centering
+	\rotatebox[origin=c]{270}{#1}
+	}
+}
+
+\begin{document}
+\begin{bookcover}
+
+% Background picture
+\bookcovercomponent{picture}{bg whole without flaps}{./figures/cover/Pieter_Bruegel_The_Triumph_of_Death_c1566}
+
+% Remark
+\bookcovercomponent{center}{above front}{
+    \color{red} \textsc{thesis cover -- front/outside}
+}
+
+
+% rectangle on the front cover by tikz code
+\bookcovercomponent{tikz}{bg front}{
+  \fill[color = black, opacity = 0.6](20.5, 29.0) rectangle (0.8, 19);
+}
+    
+% university signs
+\bookcovercomponent{normal}{front}{
+	\centering
+	\vspace{20mm}
+	\begin{minipage}{0.6\linewidth}
+		\textcolor{white}{\Large Faculty of Health Sciences\\
+			University of Southern Denmark}
+		\vspace*{14mm}
+	\end{minipage}
+	\begin{minipage}{0.3\linewidth}
+		\hfill 
+		\includegraphics[width=0.55\textwidth]{./figures/cover/SDU_Logo_white}
+		\vspace*{14mm}
+	\end{minipage}
+}
+
+% Title	
+\bookcovercomponent{normal}{front}{
+  \centering
+  \vspace{50mm}
+  \bfseries\huge\textcolor{white}{Modelling and forecasting mortality}\\[5mm]
+}
+
+% Author
+\bookcovercomponent{normal}{front}{
+	\centering
+	\vspace{80mm}
+	{\Large\textcolor{white}{Ph.D. Thesis}}\\[5mm]
+	{\LARGE\textcolor{white}{Marius D. Pascariu}}\\
+	\vfill
+	{\LARGE\textcolor{white}{\textbf{October 2018}}}\\
+  \vspace{6mm}
+}
+		
+% The Spine
+\bookcovercomponent{color}{bg spine}{color = black, opacity = 0.7}		
+\bookcovercomponent{center rotate}{spine}{
+  \includegraphics[width=\textwidth]{./figures/cover/SDU_Logo_white} 
+  \hspace{5mm}
+  \textcolor{white}{\large\textbf{MARIUS D. PASCARIU}}
+  \hspace{30mm}
+  \textcolor{white}{\large\textbf{PH.D. Thesis -- MODELLING AND FORECASTING MORTALITY}}
+}
+
+% Remark
+\bookcovercomponent{center}{above back}{
+    \color{red} \textsc{thesis cover -- back/outside}
+}
+
+\end{bookcover}
+
+
+% -----------------------------------------------
+% The inside of the book cover 
+\begin{bookcover}
+
+% Remark
+\bookcovercomponent{center}{above front}{
+  \color{red}\textsc{thesis cover -- front/inside}
+}
+
+
+% Text on the front cover (it is back of the inside book cover!)
+\bookcovercomponent{normal}{front}{
+  \vspace{180mm}
+  % \raggedleft{}
+  \centering
+  {{\bfseries The Triumph of Death} \\[2mm]
+  Bruegel "the Elder" Pieter. 1562 -- 1563. Oil on panel. \\[2mm]
+  Museo del Prado. Madrid. Spain.\\[6mm]
+  
+  \bigskip
+  \parbox{150mm}{
+  \emph{The painting on the cover depicts a customary theme in medieval literature: the dance of Death. All of the social institutions are included in this composition and neither power nor devotion can save them. It is just a matter of time. Some attempt to struggle against their inevitable destiny while others are resigned to their fate. Only a pair of lovers, at the lower right, seem to remain unmoved by the current course of events. However, in the future they too will have to suffer.}}}
+}
+
+% Remark
+\bookcovercomponent{center}{above back}{
+  \color{red}\textsc{thesis cover -- back/inside}
+}
+
+% Text on the front cover (it is back of the inside book cover!)
+\bookcovercomponent{normal}{back}{
+  % \raggedleft{}
+  \centering
+  \vfill
+  \parbox{125mm}{Printed by: Print \& Sign, SDU\\ Odense, Denmark}
+  \vspace{10mm}
+}
+\end{bookcover}
+
+\end{document} 
