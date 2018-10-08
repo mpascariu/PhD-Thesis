@@ -31,7 +31,7 @@
   \textbf{\Large Academic Advisors}
   \vspace{0.5cm}\\
   Professor \textbf{James W. Vaupel}, Ph.D.\\
-  Center for Population Dynamics\\
+  Center on Population Dynamics\\
   Institute of Public Health\\
   University of Southern Denmark\\
   Max-Planck Institute for Demographic Research, Rostock, Germany
@@ -66,15 +66,15 @@
 
 \chapter*{Preface and acknowledgements}
 \addcontentsline{toc}{chapter}{Preface and acknowledgements}
-This thesis has been written during my appointment as Ph.D. Research Fellow at the Institute of Public Health within the University of Southern Denmark and during my research stay at the Australian National University, from March 2015 to October 2018. The work was conducted within the \emph{Modelling and forecasting age-specific death at older ages} project [No.95--103--31186], with financial support of the SCOR Corporate Foundation for Science. 
+This thesis has been written during my appointment as Ph.D. Research Fellow at the Institute of Public Health within the University of Southern Denmark and during my research stay at the Australian National University, from March 2015 to October 2018. The work was conducted within the \emph{Modelling and forecasting age-specific death at older ages} project [No.95--103--31186], with the financial support of the SCOR Corporate Foundation for Science. 
 
-Early in my professional career, while working as a life actuary for insurance companies, I learned that the decisions and risks we will adopt and experience in the future can be measured in present terms. Mortality is one of the risks we face every day, with enormous implications at different levels: for us as individuals, for our families and friends, for our community, and ultimately for society. The ability of describing the length of life in mathematical terms started to fascinate me to the point that I decided to dedicate my time to explore this topic and to make this the focus of my research. I have had the fortune to cross paths with people who share my enthusiasm and interests. Many of them have had a significant impact in the development of my career. Notably, Adriana Lecu who is probably the first person who showed me what a life table is and she also convinced me to start an actuarial career. Professor James W. Vaupel strongly supported my academic work and ideas. He also convinced me to turn down a flashy job offer from Vienna and move to Odense to work under his supervision. These are decisions I do not regret.
+Early in my professional career, while working as a life actuary for insurance companies, I learned that the decisions and risks we will adopt and experience in the future can be measured in present terms. Mortality is one of the risks we face every day, with enormous implications at different levels: for us as individuals, for our families and friends, for our community, and ultimately for society. The ability to decribe the length of life in mathematical terms started to fascinate me to the point that I decided to dedicate my time to explore this topic and to make this the focus of my research. I have had the fortune to cross paths with people who share my enthusiasm and interests. Many of them have had a significant impact in the development of my career. Notably, Adriana Lecu who is probably the first person who showed me what a life table is and she also convinced me to start an actuarial career. Professor James W. Vaupel strongly supported my academic work and ideas. He also convinced me to turn down a flashy job offer from Vienna and move to Odense to work under his supervision. These are decisions I do not regret.
 
-In Denmark is where I met Professor Vladimir Canudas--Romo. He became my mentor and close advisor and under his constant guidance I was able to raise the quality of my publications. For this I offer my sincere gratitude to him. 
+In Denmark I met Professor Vladimir Canudas--Romo. He became my mentor and close advisor and under his constant guidance I was able to raise the quality of my publications. For this I offer my sincere gratitude to him. 
 
-I also thank my co-authors: Ugofilippo Basellini, Jos\'{e} Manuel Aburto and Adam Lenart for constructive collaborations, critical revision of the manuscripts and for sharing their wisdom with me. Ugo demonstrated an impressive attention to details in all our common projects in such a way that would make you think that the ideas that passed his inspection will stand to any criticism without losing their value. Jos\'{e} was able to provide alternative solutions to the problems under investigation, thus validating our work. Adam is one of the first researchers I started sharing ideas with since my arrival in Odense. Even now I remember how intimidatingly smart his remarks were during our conversations. If one would like to become an accomplished data scientist he/she should aim at being Adam Lenart. 
+I also thank my co-authors: Ugofilippo Basellini, Jos\'{e} Manuel Aburto and Adam Lenart for constructive collaborations, critical revision of the manuscripts and for sharing their wisdom with me. Ugo demonstrated an impressive attention to details in all our common projects in such a way that would make you think that the ideas that passed his inspection will stand up to any criticism without losing their value. Jos\'{e} was able to provide alternative solutions to the problems under investigation, thus validating our work. Adam is one of the first researchers I started sharing ideas with since my arrival in Odense. Even now I remember how intimidatingly smart his remarks were during our conversations. If one would like to become an accomplished data scientist he/she should aim at being Adam Lenart. 
 
-These years of research would have not been the same without all MaxO members, who make our work place interesting, motivating and friendly. I cannot not mention Anthony Medford, with whom I did not publish any work in the last four years but our endless discussions on actuarial topics motivated me to find practical applications to my work. I am still hoping for a joint collaboration Anthony! Special thanks to Marie--Pier Bergeron--Boucher, S{\o}ren Kj{\ae}rgaard, Jonas Sch\"{o}ley, Silvia Rizzi, Rune Lindahl--Jacobsen, Jim Oeppen, and of course, Catalina Torres, who has been by my side during this process. Thank you for your kindness, patience, support and enthusiasm Catalina! Thanks to the entire MaxO group.
+These years of research would have not been the same without all SDU collegues, who make our work place interesting, motivating and friendly. I must mention Anthony Medford, with whom I did not publish any work in the last four years but our endless discussions on actuarial topics motivated me to find practical applications for my work. I am still hoping for a joint collaboration Anthony! Special thanks to Marie--Pier Bergeron--Boucher, S{\o}ren Kj{\ae}rgaard, Jonas Sch\"{o}ley, Silvia Rizzi, Rune Lindahl--Jacobsen, \mbox{Jim Oeppen}, and of course, Catalina Torres, who has been by my side during this process. Thank you for your kindness, patience, support and enthusiasm Catalina! Thanks to the entire SDU group.
 
 Finally, many thanks to my family and friends in Romania. To my parents Maria and Victor Pascariu for the unconditional love, support and understanding. To my siblings Florin Pascariu and Silvia--Simona Coman for great moments together and the constant encouragement you gave me.
 
@@ -83,16 +83,18 @@ Finally, many thanks to my family and friends in Romania. To my parents Maria an
 % -------------------------------------------------------------
 \chapter*{English summary}
 \addcontentsline{toc}{chapter}{English summary}
+\vspace{-0.5cm}
 
 For the world as a whole, life expectancy has more than doubled over the past two centuries. This transformation of the duration of life has greatly enhanced the quantity and quality of people’s lives. It has fuelled enormous increase in economic output and in population size, including an upsurge in the number of elderly. Understanding human mortality dynamics is of utmost importance in the context of rapid ageing and increasing length of life experienced by most populations nowadays. The present thesis highlights new and innovative methods for estimating and projecting future mortality levels among humans.
 
 Three studies have been devised, which develop and analyse relevant statistical models for addressing uncertainty in future mortality. The studies are in the form of research manuscripts that are/will be published in scientific journals together with software packages ensuring the reproducibility of the results. In the first study, a method for forecasting life expectancy for females and males is developed. To forecast female life expectancy, the method is based on the analysis of the gap in life expectancy between females in a given country and females in record-holding countries. To forecast male life expectancy, the gap between male life expectancy and female life expectancy in a given country is analysed. In the second study, we explore a new approach inspired by indirect estimation techniques applied in demography, which can be used to estimate full life tables at any point in time, based on a given value of life expectancy at birth or at any other age. The third study makes use of the statistical properties of a probability density function in order to estimate the distribution of deaths of a population in the future. We employ time series methods for forecasting a limited number of central statistical moments and then reconstruct the future distribution of deaths using the predicted moments. The estimation of the density function is done using the maximum entropy approach.  
 
-The results show that mortality modelling can be tackled from different perspectives and higher accuracy of the future trajectories can be obtained when compared with the more traditional extrapolative methods based of age specific death rates or probabilities.
+The results show that mortality modelling can be tackled from different perspectives and higher accuracy of the future trajectories can be obtained when compared with the more traditional extrapolative methods based on age specific death rates or probabilities.
 
 % -------------------------------------------------------------
 \chapter*{Danish summary}
 \addcontentsline{toc}{chapter}{Danish summary}
+\vspace{-0.5cm}
 
 I l{\o}bet af de sidste to hundrede {\aa}r har vi oplevet mere end en fordobling i den forventede levealder. Denne transformation af levealderen har haft stor betydning for menneskets livskvantitet og -kvalitet. Det har bidraget til en enorm {\o}konomisk v{\ae}kst, men ogs{\aa} i forhold til befolkningsst{\o}rrelsen, som nu oplever en st{\o}t v{\ae}kst i befolkningen af {\ae}ldre. Det er yderst vigtigt, at vi forst{\aa}r dynamikken bag menneskets d{\o}delighed for at forst{\aa} den hurtige v{\ae}kst i forventet levealder, som de fleste befolkningsgrupper oplever i dag. Denne afhandling s{\ae}tter fokus på nye og innovative metoder til at forudsige den fremtidige levealder hos mennesker. 
 
@@ -123,11 +125,11 @@ Pascariu M.D. (2017). MortalityLaws: Parametric Mortality Models, Life Tables an
 Pascariu M.D., Dańko M.J., Schöley J. and Rizzi S. (2018). ungroup: An R package for efficient estimation of smooth distributions from coarsely binned data. Journal of Open Source Software, 3(29), 937. DOI: \url{https://doi.org/10.21105/joss.00937}
 \vspace{0.5cm}\\
 \textbf{Paper V}\\
-Bergeron Boucher M--P., Canudas--Romo V., Pascariu M.D. and Lindahl--Jacobsen R. (2018). Modelling and forecasting sex differences in mortality: A sex--ratio approach (Submitted to \textit{Genus: Journal of Population Sciences}).\\[5mm]
+Bergeron Boucher M--P., Canudas--Romo V., Pascariu M.D. and Lindahl--Jacobsen R. (Forthcoming 2018). Modelling and forecasting sex differences in mortality: A sex--ratio approach. Genus: Journal of Population Sciences.\\[5mm]
 \textbf{Published Software 2: R Package}\\
 Pascariu M.D. (2018). MortalityGaps: The Double--Gap Life Expectancy Forecasting Model. \textit{The Comprehensive R Archive Network (CRAN)}. URL: \url{https://cran.r-project.org/web/packages/MortalityGaps}\\[5mm]
 \textbf{Published Software 3: R Package}\\
-Schoeley J., Pascariu M.D., Villavicencio F. and Danko M.J. (2017). pash: Pace--Shape Analysis of Life--tables. \textit{GitHub}. URL: \url{https://github.com/jschoeley/pash}
+Schöley J., Pascariu M.D., Villavicencio F. and Dańko M.J. (2017). pash: Pace--Shape Analysis of Life--tables. \textit{GitHub}. URL: \url{https://github.com/jschoeley/pash}
 
 
 % -------------------------------------------------------------
@@ -152,7 +154,7 @@ Schoeley J., Pascariu M.D., Villavicencio F. and Danko M.J. (2017). pash: Pace--
     MAE & Mean Absolute Error\\
     MAPE & Mean Absolute Percentage Error\\
     sMAPE & Symmetric Mean Absolute Percentage Error\\
-    sMRAE & Symmetric Mean Absolute Relative Error\\
+    sMRAE & Symmetric Mean Relative Absolute Error\\
     MASE & Mean Absolute Scaled Error\\
     OLS & The ordinary least squares method for estimating the unknown parameters\\
     SVD & The singular-value decomposition method

@@ -41,7 +41,8 @@
 \usepackage{url}
 \usepackage{hyperref} % Create links - refrences
 \definecolor{mycol}{RGB}{8, 29, 88}
-\definecolor{pagecolor}{RGB}{155, 250, 200}
+% \definecolor{pagecolor}{RGB}{155, 250, 200}
+\definecolor{pagecolor}{RGB}{223, 194, 125}
 \hypersetup{
   pdffitwindow = false,     % window fit to page when opened
   pdfstartview = {Fit},     % fits the width of the page to the window
@@ -67,8 +68,8 @@
 \begin{document}
 
 \includepdf[pages = {-}, landscape = true]{Cover}\clearpage
-\subfile{Summary}\clearpage
-\subfile{Chapter1}  % Intro
+\subfile{Chapter0}\clearpage % Title, summary, acknowledgements, notations etc
+\subfile{Chapter1}  % Introduction
 \subfile{Chapter2}  % DGM
 \subfile{Chapter3}  % LL
 \subfile{Chapter4}  % MEM

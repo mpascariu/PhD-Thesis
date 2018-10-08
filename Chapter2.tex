@@ -45,14 +45,14 @@ James W. Vaupel
   	\vfill
   
     % Bottom of the page
-  	{\large June 16, 2017\par}
+  	% {\large June 16, 2017\par}
 \end{titlepage} 
 
 \newpage
 % --------------------------------------------
 
 \quad\vspace{4cm}
-\pagenumbering{arabic}\setcounter{page}{23}
+\pagenumbering{arabic}\setcounter{page}{24}
 \section*{Abstract}\label{sec:abstract1}
 Life expectancy is highly correlated over time among countries and between males and females. These associations can be used to improve forecasts. Here we propose a method for forecasting female life expectancy based on analysis of the gap between female life expectancy in a country compared with the record level of female life expectancy in the world. Second, to forecast male life expectancy, the gap between male life expectancy and female life expectancy in a country is analysed.We present these results for various developed countries. We compare our results with forecasts based on the Lee--Carter approach and the Cairns--Blake--Dowd strategy. We focus on forecasting life expectancy at age 0 and remaining life expectancy at age 65.
 
@@ -70,7 +70,7 @@ Between 1950 and 2014 the record holder for life expectancy at birth changed mor
 
 The majority of the forecasting models used by demographers and actuaries tend to predict future longevity for specific countries separately for males and females. One reason could be that females, as a group, have a different mortality age-pattern from males. They live longer and the death rates for females are lower than those for males at all ages, even before birth and in almost every country in the world \citep{austad2006}. The most pronounced discrepancy can be observed in the very old, among centenarians and supercentenarians (persons with an age of 110 and more) when women outnumber men by more than nine to one \citep{perls1998}. The sex gap in life expectancy widened and then shrank in the last half of the last century as the rate of improvement in female life expectancy exceeded that for males. Thus, the available evidence indicates the presence of behavioural as well as biological differences between the sexes, and social and psychological factors all play important roles in differentiating the mortality patterns for females and males. To simplify analysis an assumption generally made is that females and males are two different populations independent of each other.
 
-\cite{li2005} introduced a method for forecasting death rates of different populations and for both sexes that are not expected to diverge, using an augmented common factor model. \cite{hyndman2013} propose a method for coherent forecasting of mortality rates in different subpopulations based on functional principal components models of simple functions of rates. The product-ratio functional forecasting method models the geometric mean of subpopulation rates and the ratio of subpopulation rates to product rates. \cite{raftery2013} also discuss the possibility of forecasting life expectancy using a two-sex model, and develop this idea with the introduction of an elegant model to obtain joint probabilistic projections of life expectancy for both sexes \citep{raftery2014}. First, female life expectancy is forecast using a Bayesian hierarchical model and then the gap between female and male is modelled, recognizing in a formal way the correlation in mortality.
+\cite{li2005} introduced a method for forecasting death rates of different populations and for both sexes that are not expected to diverge, using an augmented common factor model. \cite{hyndman2013} propose a method for coherent forecasting of mortality rates in different subpopulations based on functional principal components models of simple functions of rates. The product-ratio functional forecasting method models the geometric mean of subpopulation rates and the ratio of subpopulation rates to product rates. \cite{raftery2013} also discuss the possibility of forecasting life expectancy using a two-sex model, and develop this idea with the introduction of an elegant model to obtain joint probabilistic projections of life expectancy for both sexes \citep{raftery2014}. First, female life expectancy is forecast using a Bayesian hierarchical model and then the gap between female and male is modelled, recognizing in a formal way the correlation in mortality. Coherent two-population modelling of age-specific death-rates have been done by \cite{jarner2011, cairns2011, lihardy2011} and \cite{dowd2011}.
 
 Further knowledge can be gained by integrating the idea of the life expectancy correlation between sexes and also between countries, into a single model. The main objective of this article is to present such a model.
 
@@ -592,6 +592,8 @@ Having simple methods to predict future mortality levels is of high importance b
   \caption{Forecast life expectancy at age 65 in 2015--2050 for 18 countries and regions}
   \label{fig:12Countries_a65_oos}
 \end{figure}
+
+\afterpage{\null\newpage} % blank page
 
 \end{document}
 
